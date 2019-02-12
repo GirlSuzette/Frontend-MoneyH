@@ -20,12 +20,42 @@ export default class Expenses extends Component {
         history.push('/')
     }
 
+
+    componentDidMount() {
+        fetch('https://cryptic-retreat-15738.herokuapp.com/api/v1/users')
+            .then(response => response.json())
+            .then(data => {
+
+                console.log(data)
+                this.setState({
+                    users: data.data
+                })
+
+                const token = localStorage.getItem('token')
+                var base64Url = token.split('.')[1];
+                var base64 = base64Url.replace('-', '+').replace('_', '/');
+                const t = JSON.parse(window.atob(base64));
+                // console.log(t.email)
+                const currentUser = data.data.filter(user => {
+                    if (user.email === t.email) {
+                        this.setState({ user: user })
+                        return user
+                    }
+                })
+                // console.log(currentUser)
+                const id = currentUser.map(us => {
+                    return (<input name="id" type="hidden" value={us._id} />)
+                })
+                return id
+            })
+
+    }
     onSubmit = e => {
         e.preventDefault()
 
         const API_URL = 'https://cryptic-retreat-15738.herokuapp.com/api/v1/'
 
-        fetch(`${API_URL}/users/:userId`, {
+        fetch(`${API_URL}/users/${this.state.user._id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -76,6 +106,7 @@ export default class Expenses extends Component {
                                             label='Concept'
                                             fullWidth
                                         />
+
                                     </div>
                                     <div className='form-group'>
                                         <TextField

@@ -13,9 +13,7 @@ class Signup extends React.Component {
   }
   handleLogIn = () => {
     const { history } = this.props
-
-    localStorage.removeItem('token')
-    history.push('/')
+    history.push('/login')
   }
 
   onSubmit = e => {
@@ -94,6 +92,7 @@ class Signup extends React.Component {
                         name='number'
                         type='number'
                         label='Number'
+                        maxlength="10"
                         fullWidth
                       // onChange={this.handleChange}
                       />
