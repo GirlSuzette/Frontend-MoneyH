@@ -1,10 +1,9 @@
 import React from 'react'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import './login.css'
-import { Link } from 'react-router-dom'
+import './updateUser.css'
 
-class Login extends React.Component {
+class UpdateUser extends React.Component {
   state = {
     error: {
       status: false,
@@ -23,14 +22,16 @@ class Login extends React.Component {
 
     const API_URL = 'https://cryptic-retreat-15738.herokuapp.com/api/v1/'
 
-    fetch(`${API_URL}/auth/login`, {
-      method: 'POST',
+    fetch(`${API_URL}/users/:userId`, {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
+        fullName: e.target.fullName.value,
         email: e.target.email.value,
-        password: e.target.password.value
+        password: e.target.password.value,
+        phoneNumber: e.target.number.value
       })
     })
       .then(response => response.json())
@@ -42,7 +43,7 @@ class Login extends React.Component {
           if (url !== '') {
             this.props.history.push('/' + url.split('/')[1] || '/')
           } else {
-            this.props.history.push('/')
+            this.props.history.push('/login')
           }
         } else {
           this.setState({
@@ -62,15 +63,36 @@ class Login extends React.Component {
           <div className='expensesContainer'>
             <div className='container ContLogin'>
               <div className='container' id='registration-form'>
-                <h1 className='centerTitle sizeTitle'>Log In</h1>
-                <div className='image' />
+                <h1 className='centerTitle sizeTitle'>Update Account</h1>
+                <div className='imageUp' />
                 <div className='frm'>
                   <form onSubmit={this.onSubmit}>
                     <div className='form-group'>
                       <TextField
                         required
+                        name='fullName'
+                        type='text'
+                        label='Name'
+                        fullWidth
+                      // onChange={this.handleChange}
+                      />
+                    </div>
+                    <div className='form-group'>
+                      <TextField
+                        required
                         name='email'
+                        type='email'
                         label='Email'
+                        fullWidth
+                      // onChange={this.handleChange}
+                      />
+                    </div>
+                    <div className='form-group'>
+                      <TextField
+                        required
+                        name='number'
+                        type='number'
+                        label='Number'
                         fullWidth
                       // onChange={this.handleChange}
                       />
@@ -86,23 +108,15 @@ class Login extends React.Component {
                       />
                     </div>
                     {this.state.error.status && <p>{this.state.error.message}</p>}
-                    <div className='form-group'>
+                    <div class='form-group'>
                       <Button
                         type='submit'
                         value='Login'
                         variant='contained'
                         onClick={this.handleLogout}
                       >
-                        Login
+                        Saved
                   </Button>
-                      <div className='signupContainer'>
-                        <p>
-                          Don't have an Money Home account yet?
-                      <Link className='signupLink' to='/signup'>
-                            Sign up now!
-                      </Link>
-                        </p>
-                      </div>
                     </div>
                   </form>
                 </div>
@@ -115,4 +129,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login
+export default UpdateUser

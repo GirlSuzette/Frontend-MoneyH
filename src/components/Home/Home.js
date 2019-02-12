@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import Swiper from 'react-id-swiper'
-import imgOne from '../../image/graf.jpg'
-import imgTwoo from '../../image/00-apps-cover.jpg'
-import imgThree from '../../image/20772.jpg'
+import imgOne from '../../image/banner2.jpg'
+import imgTwoo from '../../image/banner3.jpg'
+import imgThree from '../../image/banner4.jpg'
+import imgFour from '../../image/banner5.jpg'
+import UpdateExpenses from '../Expenses/UpdateExpenses'
 
 export default class Home extends Component {
   constructor (props) {
@@ -54,10 +56,11 @@ export default class Home extends Component {
               <img src={imgOne} alt='Smiley face' />
             </div>
             <div>
-              <img src={imgOne} alt='Smiley face' />
+              <img src={imgFour} alt='Smiley face' />
             </div>
           </Swiper>
         </div>
+        <UpdateExpenses/>
       </React.Fragment>
     )
   }

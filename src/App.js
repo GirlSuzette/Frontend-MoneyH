@@ -12,11 +12,12 @@ import Savings from './components/Saving/Savings'
 import Dashboard from './components/Dashboard/Dashboard'
 import PrivateRoute from './components/PrivateComponent/PrivateComponent'
 import Footer from './components/Footer/Footer'
+import UpdateUser from './components/Signup/UpdateUser'
 
 import './App.css'
 
 class App extends Component {
-  render () {
+  render() {
     return (
       <div>
         <Menu />
@@ -24,6 +25,7 @@ class App extends Component {
           <Route path='/' exact component={Home} />
           <Route path='/login' exact component={Login} />
           <Route path='/signup' exact component={Signup} />
+          <PrivateRoute path='/update' exact component={UpdateUser} />
           <PrivateRoute path='/expenses' exact component={Expenses} />
           <PrivateRoute path='/incomes' exact component={Incomes} />
           <PrivateRoute path='/savings' exact component={Savings} />

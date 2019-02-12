@@ -30,7 +30,7 @@ const styles = {
 }
 
 class Menu extends React.Component {
-  constructor () {
+  constructor() {
     super()
     this.state = {
       open: false
@@ -49,7 +49,7 @@ class Menu extends React.Component {
     history.push('/')
   }
 
-  render () {
+  render() {
     const AppBarStyles = {
       flex: 1
     }
@@ -101,6 +101,11 @@ class Menu extends React.Component {
               <ListItem button>
                 <Link className='side' to='/'>
                   Home
+                </Link>
+              </ListItem>
+              <ListItem button>
+                <Link className='side' to='/update'>
+                Update Account
                 </Link>
               </ListItem>
               <ListItem button>

@@ -7,17 +7,56 @@ import Card from '../MaterialComponents/Card'
 import ExpensesImage from '../../image/expenses.jpg'
 
 export default class Expenses extends Component {
-  render () {
+
+  constructor() {
+    super();
+    this.state = {
+      users: [],
+      local: ''
+
+    }
+  }
+
+  componentDidMount() {
+    fetch('https://cryptic-retreat-15738.herokuapp.com/api/v1/users')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        this.setState({
+          users: data.data
+        })
+      })
+  }
+
+  findUser = (users) => {
+    const token = localStorage.getItem('token')
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace('-', '+').replace('_', '/');
+    const t = JSON.parse(window.atob(base64));
+    console.log(t.email)
+    const currentUser = users.filter(user => {
+      if (user.email === t.email) {
+        return user
+      }
+    })
+    console.log(currentUser)
+    const id = currentUser.map(us => {
+      return (<input name="id" type="hidden" value={us._id} />)
+    })
+    return id
+  }
+  render() {
+    const {users } = this.state
     return (
       <div className='expensesContainer'>
         <div className='container'>
           <div className='row'>
             <div className='frm col-sm-4'>
               <Card cardTitle='Expenses' picture={ExpensesImage}>
-                <form>
+                <form onSubmit={this.findUser}>
                   <span>Expenses</span>
                   <span className='moneyExp'>$20000</span>
-
+                  {this.findUser(users)}
                   <div className='form-group'>
                     <TextField
                       required
