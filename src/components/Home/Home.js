@@ -4,24 +4,23 @@ import imgOne from '../../image/banner2.jpg'
 import imgTwoo from '../../image/banner3.jpg'
 import imgThree from '../../image/banner4.jpg'
 import imgFour from '../../image/banner5.jpg'
-import UpdateExpenses from '../Expenses/UpdateExpenses'
 
 export default class Home extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.goNext = this.goNext.bind(this)
     this.goPrev = this.goPrev.bind(this)
     this.swiper = null
   }
 
-  goNext () {
+  goNext() {
     if (this.swiper) this.swiper.slideNext()
   }
 
-  goPrev () {
+  goPrev() {
     if (this.swiper) this.swiper.slidePrev()
   }
-  render () {
+  render() {
     const params = {
       spaceBetween: 30,
       centeredSlides: true,
@@ -60,7 +59,27 @@ export default class Home extends Component {
             </div>
           </Swiper>
         </div>
-        <UpdateExpenses/>
+        <div class="container text-center">
+          <h3>What We Do</h3><br />
+          <div class="row">
+            <div class="col-sm-4">
+              {/* <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image" /> */}
+              <p>Current Project</p>
+            </div>
+            <div class="col-sm-4">
+              {/* <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image" /> */}
+              <p>Project 2</p>
+            </div>
+            <div class="col-sm-4">
+              <div class="well">
+                <p>Some text..</p>
+              </div>
+              <div class="well">
+                <p>Some text..</p>
+              </div>
+            </div>
+          </div>
+        </div><br />
       </React.Fragment>
     )
   }

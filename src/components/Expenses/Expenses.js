@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import './expenses.css'
-import MaterialUIPickers from '../MaterialUIPickers/MaterialUIPickers'
 import Card from '../MaterialComponents/Card'
 import ExpensesImage from '../../image/expenses.jpg'
 import PropTypes from 'prop-types'
@@ -66,9 +65,9 @@ class Expenses extends Component {
   }
 
   handleDateChange = date => {
-
     this.setState({ selectedDate: date.toISOString() })
   }
+
   handleExpense = () => {
     const { history } = this.props
     history.push('/expenses')
@@ -90,7 +89,6 @@ class Expenses extends Component {
         date: this.state.selectedDate,
         type: e.target.type.value,
         status: e.target.status.value,
-        // user: e.target.id.value
       })
 
     })
@@ -120,7 +118,7 @@ class Expenses extends Component {
 
   render() {
     const { classes } = this.props
-    console.log(this.state)
+    // console.log(this.state)
     return (
       <div className='expensesContainer'>
         <div className='container'>
@@ -153,7 +151,7 @@ class Expenses extends Component {
                       <Grid container className={classes.grid} justify='space-around'>
                         <DatePicker
                           margin='normal'
-                          label={this.props.label}
+                          label='Date'
                           value={this.state.selectedDate}
                           onChange={this.handleDateChange}
                         />

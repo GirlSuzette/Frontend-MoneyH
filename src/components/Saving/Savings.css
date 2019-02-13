@@ -3,7 +3,7 @@
 }
 
 .savingsContainer {
-  min-height: 120vh;
+  min-height: 150vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
