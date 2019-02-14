@@ -113,6 +113,14 @@ class Expenses extends Component {
         }
       })
       .catch(e => alert(e))
+    e.target.concept.value = ""
+    e.target.quantity.value = ""
+    e.target.type.value = "1"
+    e.target.status.value = "1"
+
+    this.setState({
+      selectedDate: new Date()
+    })
   }
 
 
@@ -126,8 +134,10 @@ class Expenses extends Component {
             <div className='frm col-sm-4'>
               <Card cardTitle='Expenses' picture={ExpensesImage}>
                 <form onSubmit={this.onSubmit}>
-                  <span>Expenses</span>
-                  <span className='moneyExp'>$20000</span>
+                  <div class="row">
+                    <div class="col-6 colorRed">Expenses</div>
+                    <div class="col-6 colorRed">$15,0000.00</div>
+                  </div>
                   <div className='form-group'>
                     <TextField
                       required
@@ -161,7 +171,7 @@ class Expenses extends Component {
                   <div className='form-group'>
                     <div>
                       <select name='type' className='browser-default custom-select'>
-                        <option >Choose your type</option>
+                        <option value="1">Choose your type</option>
                         <option value='Fixed'>Fixed</option>
                         <option value='Variable'>Variable</option>
                       </select>
@@ -170,9 +180,9 @@ class Expenses extends Component {
                   <div className='form-group'>
                     <div>
                       <select name='status' className='browser-default custom-select'>
-                        <option >Choose your status</option>
-                        <option value='Fixed'>Fixed</option>
-                        <option value='Variable'>Variable</option>
+                        <option value="1">Choose your status</option>
+                        <option value='Paid out'>Paid out</option>
+                        <option value='By paid'>By paid</option>
                       </select>
                     </div>
                   </div>

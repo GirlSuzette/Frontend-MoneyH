@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom'
 import './Footer.css'
 
 export default class Footer extends Component {
-  render () {
+  render() {
     return (
       <React.Fragment>
         <footer class='footer-distributed'>
           <div class='footer-right'>
+            <div>Follow</div>
             <Link to='#'>
               <i class='fa fa-facebook' />
             </Link>
@@ -24,8 +25,8 @@ export default class Footer extends Component {
 
           <div class='footer-left'>
             <p class='footer-links'>
-              <Link to='#'>Home</Link>·<Link to='#'>Income</Link>·
-              <Link to='#'>Expenses</Link>·<Link to='#'>Saving</Link>·
+              <Link to='/'>Home</Link>·<Link to='#'>Income</Link>·
+              <Link to='/expenses'>Expenses</Link>·<Link to='#'>Saving</Link>·
               <Link to='#'>Contact</Link>
             </p>
 

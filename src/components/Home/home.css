@@ -1,0 +1,25 @@
+
+.swiper-container.swiper-container-horizontal {
+    height: 382px;
+}
+
+.swiper-container {
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    z-index: 1;
+    height: 360px;
+}
+
+.col3 {
+    margin: 29px;
+    /* margin: 80px; */
+    font-size: 18px;
+}
+
+.textHome{
+    font-size: 30px;
+}
+

@@ -82,7 +82,7 @@ class Menu extends React.Component {
           {isLoggedIn() && (
             <div>
               <span className='logoup' onClick={this.handleLogout}>
-                Logoup<i className='material-icons'>exit_to_app</i>
+                Logout<i className='material-icons'>exit_to_app</i>
               </span>
             </div>
           )}

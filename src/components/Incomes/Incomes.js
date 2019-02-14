@@ -86,7 +86,6 @@ class Incomes extends Component {
         quantity: e.target.quantity.value,
         date: this.state.selectedDate,
         type: e.target.type.value,
-        status: e.target.status.value,
       })
     })
       .then(response => response.json())
@@ -110,6 +109,12 @@ class Incomes extends Component {
         }
       })
       .catch(e => alert(e))
+    e.target.concept.value = ""
+    e.target.quantity.value = ""
+    e.target.type.value = "1"
+    this.setState({
+      selectedDate: new Date()
+    })
   }
   render() {
     const { classes } = this.props
@@ -120,8 +125,10 @@ class Incomes extends Component {
             <div className='frm col-sm-4'>
               <Card cardTitle='Incomes' picture={IncomesImage}>
                 <form onSubmit={this.onSubmit}>
-                  <span>Income</span>
-                  <span className='moneyExp'>$4000</span>
+                  <div class="row">
+                    <div class="col-6 colorGreen">Incomes</div>
+                    <div class="col- colorGreen">$20,000.00</div>
+                  </div>
                   <div className='form-group'>
                     <TextField
                       required
@@ -155,18 +162,9 @@ class Incomes extends Component {
                   <div className='form-group btnExp'>
                     <div>
                       <select name='type' className='browser-default custom-select'>
-                        <option>Choose your type</option>
+                        <option value='1'>Choose your type</option>
                         <option value='type'>Fixed</option>
                         <option value='type'>Variable</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className='form-group btnExp'>
-                    <div>
-                      <select name='status' className='browser-default custom-select'>
-                        <option>Choose your status</option>
-                        <option value='Paid out'>Paid out</option>
-                        <option value='By paid'>By paid</option>
                       </select>
                     </div>
                   </div>

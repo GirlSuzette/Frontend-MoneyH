@@ -54,6 +54,7 @@ class Signup extends React.Component {
         }
       })
       .catch(e => alert(e))
+      this.props.history.push('/login')
   }
   render() {
     return (
@@ -91,7 +92,7 @@ class Signup extends React.Component {
                         required
                         name='number'
                         type='number'
-                        label='Number'
+                        label='Phone Number'
                         maxlength="10"
                         fullWidth
                       // onChange={this.handleChange}

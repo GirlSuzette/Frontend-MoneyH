@@ -31,8 +31,6 @@ class Savings extends Component {
     }
   }
 
-
-
   componentDidMount() {
     fetch('https://cryptic-retreat-15738.herokuapp.com/api/v1/users')
       .then(response => response.json())
@@ -72,7 +70,7 @@ class Savings extends Component {
 
     const API_URL = 'https://cryptic-retreat-15738.herokuapp.com/api/v1/'
 
-    fetch(`${API_URL}/users/${this.state.user._id}/saving`, {
+    fetch(`${API_URL}/users/${this.state.user._id}/savings`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -104,6 +102,14 @@ class Savings extends Component {
         }
       })
       .catch(e => alert(e))
+       e.target.concept.value = ""
+       e.target.quantity.value = ""
+       e.target.savingFor.value = "1"
+       e.target.duration.value= ""
+       e.target.period.value="0"
+       this.setState({
+        selectedDate: new Date()
+      })
   }
 
 
@@ -138,7 +144,7 @@ class Savings extends Component {
                   <div className='form-group btnExp'>
                     <div>
                       <select name='savingFor' className='browser-default custom-select'>
-                        <option>Choose your Saving for</option>
+                        <option value='1'>Choose your Saving for</option>
                         <option value='Weekly'>Weekly</option>
                         <option value='Biweekly'>Biweekly</option>
                         <option value='Monthly'>Monthly</option>
@@ -169,7 +175,7 @@ class Savings extends Component {
                   <div className='form-group btnExp'>
                     <div>
                       <select name='period' className='browser-default custom-select'>
-                        <option>Choose your Saving for</option>
+                        <option value="0">Choose your Saving for</option>
                         <option value='1'>Day</option>
                         <option value='2'>Week</option>
                         <option value='3'>Month</option>

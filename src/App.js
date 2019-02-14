@@ -13,6 +13,9 @@ import Dashboard from './components/Dashboard/Dashboard'
 import PrivateRoute from './components/PrivateComponent/PrivateComponent'
 import Footer from './components/Footer/Footer'
 import UpdateUser from './components/Signup/UpdateUser'
+import ListIncomes from './components/Incomes/ListIncomes'
+import ListExpenses from './components/Expenses/ListExpenses'
+import ListSavings from './components/Saving/ListSaving'
 
 import './App.css'
 
@@ -30,6 +33,9 @@ class App extends Component {
           <PrivateRoute path='/incomes' exact component={Incomes} />
           <PrivateRoute path='/savings' exact component={Savings} />
           <PrivateRoute path='/dashboard' exact component={Dashboard} />
+          <PrivateRoute path='/listincomes' exact component={ListIncomes} />
+          <PrivateRoute path='/listexpenses' exact component={ListExpenses} />
+          <PrivateRoute path='/listsavings' exact component={ListSavings} />
         </Switch>
         <Footer />
       </div>
