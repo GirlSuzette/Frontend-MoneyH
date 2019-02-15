@@ -10,7 +10,6 @@ import { withStyles } from '@material-ui/core/styles'
 import DateFnsUtils from '@date-io/date-fns'
 import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers'
 
-
 const styles = {
   grid: {
     width: '60%'
@@ -18,9 +17,8 @@ const styles = {
 }
 
 class Incomes extends Component {
-
-  constructor() {
-    super();
+  constructor () {
+    super()
     this.state = {
       users: [],
       local: '',
@@ -28,27 +26,29 @@ class Incomes extends Component {
         status: false,
         message: ''
       },
-      selectedDate: new Date()
-
+      selectedDate: new Date(),
+      incomes: []
     }
   }
 
+  calculateTotal () {
+    const prices = this.state.incomes.map(p => p.quantity)
+    return prices.reduce((a, b) => a + b, 0)
+  }
 
-
-  componentDidMount() {
+  componentDidMount () {
     fetch('https://cryptic-retreat-15738.herokuapp.com/api/v1/users')
       .then(response => response.json())
       .then(data => {
-
         console.log(data)
         this.setState({
           users: data.data
         })
 
         const token = localStorage.getItem('token')
-        var base64Url = token.split('.')[1];
-        var base64 = base64Url.replace('-', '+').replace('_', '/');
-        const t = JSON.parse(window.atob(base64));
+        var base64Url = token.split('.')[1]
+        var base64 = base64Url.replace('-', '+').replace('_', '/')
+        const t = JSON.parse(window.atob(base64))
         // console.log(t.email)
         const currentUser = data.data.filter(user => {
           if (user.email === t.email) {
@@ -57,19 +57,34 @@ class Incomes extends Component {
           }
         })
         // console.log(currentUser)
-        const id = currentUser.map(us => {
-          return (<input name="id" type="hidden" value={us._id} />)
-        })
-        return id
+        this.getIncomes(currentUser)
       })
+  }
 
+  getIncomes = currentUser => {
+    // console.log(currentUser)
+    const userId = currentUser[0]._id
+    console.log(userId)
+    const API_URL = 'https://cryptic-retreat-15738.herokuapp.com/api/v1'
+    fetch(`${API_URL}/users/${userId}/incomes`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        this.setState({
+          incomes: data.data
+        })
+      })
+      .catch(e => alert(e))
   }
 
   handleDateChange = date => {
-
     this.setState({ selectedDate: date.toISOString() })
   }
-
 
   onSubmit = e => {
     e.preventDefault()
@@ -85,7 +100,7 @@ class Incomes extends Component {
         concept: e.target.concept.value,
         quantity: e.target.quantity.value,
         date: this.state.selectedDate,
-        type: e.target.type.value,
+        type: e.target.type.value
       })
     })
       .then(response => response.json())
@@ -109,25 +124,22 @@ class Incomes extends Component {
         }
       })
       .catch(e => alert(e))
-    e.target.concept.value = ""
-    e.target.quantity.value = ""
-    e.target.type.value = "1"
-    this.setState({
-      selectedDate: new Date()
-    })
+    this.props.history.push('/incomes')
   }
-  render() {
+  render () {
     const { classes } = this.props
     return (
       <div className='incomesContainer'>
         <div className='container'>
           <div class='row'>
             <div className='frm col-sm-4'>
-              <Card cardTitle='Incomes' picture={IncomesImage}>
+              <Card picture={IncomesImage}>
                 <form onSubmit={this.onSubmit}>
-                  <div class="row">
-                    <div class="col-6 colorGreen">Incomes</div>
-                    <div class="col- colorGreen">$20,000.00</div>
+                  <div class='row'>
+                    <div class='col-6 colorGreen'>Incomes</div>
+                    <div class='col- colorGreen'>
+                      $ {this.calculateTotal()}.00
+                    </div>
                   </div>
                   <div className='form-group'>
                     <TextField
@@ -149,7 +161,11 @@ class Incomes extends Component {
                   </div>
                   <div className='form-group'>
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                      <Grid container className={classes.grid} justify='space-around'>
+                      <Grid
+                        container
+                        className={classes.grid}
+                        justify='space-around'
+                      >
                         <DatePicker
                           margin='normal'
                           label='Date'
@@ -161,7 +177,10 @@ class Incomes extends Component {
                   </div>
                   <div className='form-group btnExp'>
                     <div>
-                      <select name='type' className='browser-default custom-select'>
+                      <select
+                        name='type'
+                        className='browser-default custom-select'
+                      >
                         <option value='1'>Choose your type</option>
                         <option value='type'>Fixed</option>
                         <option value='type'>Variable</option>

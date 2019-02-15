@@ -16,11 +16,12 @@ import UpdateUser from './components/Signup/UpdateUser'
 import ListIncomes from './components/Incomes/ListIncomes'
 import ListExpenses from './components/Expenses/ListExpenses'
 import ListSavings from './components/Saving/ListSaving'
+import MenuApp from './components/MenuMovil/MenuMovil'
 
 import './App.css'
 
 class App extends Component {
-  render() {
+  render () {
     return (
       <div>
         <Menu />
@@ -38,6 +39,7 @@ class App extends Component {
           <PrivateRoute path='/listsavings' exact component={ListSavings} />
         </Switch>
         <Footer />
+        <MenuApp />
       </div>
     )
   }

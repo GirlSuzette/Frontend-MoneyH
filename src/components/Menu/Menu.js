@@ -30,7 +30,7 @@ const styles = {
 }
 
 class Menu extends React.Component {
-  constructor() {
+  constructor () {
     super()
     this.state = {
       open: false
@@ -49,7 +49,7 @@ class Menu extends React.Component {
     history.push('/')
   }
 
-  render() {
+  render () {
     const AppBarStyles = {
       flex: 1
     }
@@ -69,9 +69,12 @@ class Menu extends React.Component {
             <MenuIcon />
           </IconButton>
           <Typography style={AppBarStyles} variant='h6' color='inherit'>
-            <Link className='NavMenu' to='/'>
-              <img src={Logo} width='50' alt='logo' /> Money Home
-            </Link>
+            <div className='flex'>
+              <Link to='/'>
+                <img src={Logo} className='NavMenu' alt='logo' />
+              </Link>
+              <div className='titleMenu'>Money Home</div>
+            </div>
           </Typography>
 
           {!isLoggedIn() && (
@@ -105,12 +108,12 @@ class Menu extends React.Component {
               </ListItem>
               <ListItem button>
                 <Link className='side' to='/update'>
-                Update Account
+                  Update Account
                 </Link>
               </ListItem>
               <ListItem button>
                 <Link className='side' to='/incomes'>
-                  Icomes
+                  Incomes
                 </Link>
               </ListItem>
               <Divider />
@@ -121,7 +124,7 @@ class Menu extends React.Component {
               </ListItem>
               <ListItem button>
                 <Link className='side' to='/savings'>
-                  Savings goal
+                  Saving goals
                 </Link>
               </ListItem>
               <ListItem button>

@@ -1,8 +1,51 @@
 .logoup {
   color: #044c02;
-  font-size: 30px;
+  font-size: 18px;
 }
 
 i.userIcon.material-icons {
-  font-size: 44px;
+  font-size: 36px;
+}
+
+.titleMenu {
+  display: none;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+img.NavMenu {
+  width: 33px;
+}
+
+.material-icons {
+  font-size: 16px;
+}
+
+@media screen and (min-width: 1024px) {
+  .logoup {
+    color: #044c02;
+    font-size: 30px;
+  }
+  .titleMenu {
+    font-size: 24px;
+    display: flex;
+    font-family: "Kaushan Script", cursive;
+    color: #044c02;
+    font-size: 26px;
+    margin-left: 10px;
+  }
+
+  img.NavMenu {
+    width: 50px;
+  }
+
+  .material-icons {
+    font-size: 29px;
+  }
+  i.userIcon.material-icons {
+    font-size: 44px;
+  }
 }

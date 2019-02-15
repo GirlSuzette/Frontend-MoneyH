@@ -1,25 +1,31 @@
-
 .swiper-container.swiper-container-horizontal {
-    height: 382px;
+  height: 132px;
 }
 
 .swiper-container {
-    margin: 0 auto;
-    position: relative;
-    overflow: hidden;
-    list-style: none;
-    padding: 0;
-    z-index: 1;
-    height: 360px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  list-style: none;
+  padding: 0;
+  z-index: 1;
+  height: 360px;
 }
 
 .col3 {
-    margin: 29px;
-    /* margin: 80px; */
-    font-size: 18px;
+  margin: 29px;
+  /* margin: 80px; */
+
+  font-size: 14px;
 }
 
-.textHome{
-    font-size: 30px;
+.textHome {
+  font-size: 15px;
+  margin: 10px;
 }
 
+@media screen and (min-width: 1024px) {
+  .swiper-container.swiper-container-horizontal {
+    height: 382px;
+  }
+}

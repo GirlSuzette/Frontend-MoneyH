@@ -17,9 +17,8 @@ const styles = {
 }
 
 class Expenses extends Component {
-
-  constructor() {
-    super();
+  constructor () {
+    super()
     this.state = {
       users: [],
       local: '',
@@ -27,27 +26,29 @@ class Expenses extends Component {
         status: false,
         message: ''
       },
-      selectedDate: new Date()
-
+      selectedDate: new Date(),
+      expenses: []
     }
   }
 
+  calculateTotal () {
+    const prices = this.state.expenses.map(p => p.quantity)
+    return prices.reduce((a, b) => a + b, 0)
+  }
 
-
-  componentDidMount() {
+  componentDidMount () {
     fetch('https://cryptic-retreat-15738.herokuapp.com/api/v1/users')
       .then(response => response.json())
       .then(data => {
-
-        console.log(data)
+        //   console.log(data)
         this.setState({
           users: data.data
         })
 
         const token = localStorage.getItem('token')
-        var base64Url = token.split('.')[1];
-        var base64 = base64Url.replace('-', '+').replace('_', '/');
-        const t = JSON.parse(window.atob(base64));
+        var base64Url = token.split('.')[1]
+        var base64 = base64Url.replace('-', '+').replace('_', '/')
+        const t = JSON.parse(window.atob(base64))
         // console.log(t.email)
         const currentUser = data.data.filter(user => {
           if (user.email === t.email) {
@@ -56,12 +57,29 @@ class Expenses extends Component {
           }
         })
         // console.log(currentUser)
-        const id = currentUser.map(us => {
-          return (<input name="id" type="hidden" value={us._id} />)
-        })
-        return id
+        this.getExpenses(currentUser)
       })
+  }
 
+  getExpenses = currentUser => {
+    // console.log(currentUser)
+    const userId = currentUser[0]._id
+    console.log(userId)
+    const API_URL = 'https://cryptic-retreat-15738.herokuapp.com/api/v1'
+    fetch(`${API_URL}/users/${userId}/expenses`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        this.setState({
+          expenses: data.data
+        })
+      })
+      .catch(e => alert(e))
   }
 
   handleDateChange = date => {
@@ -88,12 +106,12 @@ class Expenses extends Component {
         quantity: e.target.quantity.value,
         date: this.state.selectedDate,
         type: e.target.type.value,
-        status: e.target.status.value,
+        status: e.target.status.value
       })
-
     })
       .then(response => response.json())
       .then(data => {
+        console.log(data)
         if (typeof data.token !== 'undefined') {
           localStorage.setItem('token', data.token)
           const url = window.decodeURIComponent(this.props.location.search)
@@ -113,18 +131,10 @@ class Expenses extends Component {
         }
       })
       .catch(e => alert(e))
-    e.target.concept.value = ""
-    e.target.quantity.value = ""
-    e.target.type.value = "1"
-    e.target.status.value = "1"
-
-    this.setState({
-      selectedDate: new Date()
-    })
+    this.props.history.push('/expenses')
   }
 
-
-  render() {
+  render () {
     const { classes } = this.props
     // console.log(this.state)
     return (
@@ -132,11 +142,14 @@ class Expenses extends Component {
         <div className='container'>
           <div className='row'>
             <div className='frm col-sm-4'>
-              <Card cardTitle='Expenses' picture={ExpensesImage}>
+              <Card picture={ExpensesImage}>
                 <form onSubmit={this.onSubmit}>
-                  <div class="row">
-                    <div class="col-6 colorRed">Expenses</div>
-                    <div class="col-6 colorRed">$15,0000.00</div>
+                  <div class='row'>
+                    <div class='col-6 colorRed'>Expenses</div>
+                    <div class='col-6 colorRed'>
+                      {' '}
+                      $ {this.calculateTotal()}.00
+                    </div>
                   </div>
                   <div className='form-group'>
                     <TextField
@@ -158,7 +171,11 @@ class Expenses extends Component {
                   </div>
                   <div className='form-group'>
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                      <Grid container className={classes.grid} justify='space-around'>
+                      <Grid
+                        container
+                        className={classes.grid}
+                        justify='space-around'
+                      >
                         <DatePicker
                           margin='normal'
                           label='Date'
@@ -170,8 +187,11 @@ class Expenses extends Component {
                   </div>
                   <div className='form-group'>
                     <div>
-                      <select name='type' className='browser-default custom-select'>
-                        <option value="1">Choose your type</option>
+                      <select
+                        name='type'
+                        className='browser-default custom-select'
+                      >
+                        <option value='1'>Choose your type</option>
                         <option value='Fixed'>Fixed</option>
                         <option value='Variable'>Variable</option>
                       </select>
@@ -179,8 +199,11 @@ class Expenses extends Component {
                   </div>
                   <div className='form-group'>
                     <div>
-                      <select name='status' className='browser-default custom-select'>
-                        <option value="1">Choose your status</option>
+                      <select
+                        name='status'
+                        className='browser-default custom-select'
+                      >
+                        <option value='1'>Choose your status</option>
                         <option value='Paid out'>Paid out</option>
                         <option value='By paid'>By paid</option>
                       </select>

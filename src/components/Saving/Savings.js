@@ -17,8 +17,8 @@ const styles = {
 }
 
 class Savings extends Component {
-  constructor() {
-    super();
+  constructor () {
+    super()
     this.state = {
       users: [],
       local: '',
@@ -27,24 +27,22 @@ class Savings extends Component {
         message: ''
       },
       selectedDate: new Date()
-
     }
   }
 
-  componentDidMount() {
+  componentDidMount () {
     fetch('https://cryptic-retreat-15738.herokuapp.com/api/v1/users')
       .then(response => response.json())
       .then(data => {
-
         console.log(data)
         this.setState({
           users: data.data
         })
 
         const token = localStorage.getItem('token')
-        var base64Url = token.split('.')[1];
-        var base64 = base64Url.replace('-', '+').replace('_', '/');
-        const t = JSON.parse(window.atob(base64));
+        var base64Url = token.split('.')[1]
+        var base64 = base64Url.replace('-', '+').replace('_', '/')
+        const t = JSON.parse(window.atob(base64))
         // console.log(t.email)
         const currentUser = data.data.filter(user => {
           if (user.email === t.email) {
@@ -54,11 +52,10 @@ class Savings extends Component {
         })
         // console.log(currentUser)
         const id = currentUser.map(us => {
-          return (<input name="id" type="hidden" value={us._id} />)
+          return <input name='id' type='hidden' value={us._id} />
         })
         return id
       })
-
   }
 
   handleDateChange = date => {
@@ -81,17 +78,15 @@ class Savings extends Component {
         savingFor: e.target.savingFor.value,
         startDate: this.state.selectedDate,
         duration: e.target.duration.value,
-        period: e.target.period.value,
+        period: e.target.period.value
       })
-
     })
       .then(response => response.json())
       .then(data => {
         if (typeof data.token !== 'undefined') {
           localStorage.setItem('token', data.token)
-          const url = window.decodeURIComponent(this.props.location.search);
-          this.props.history.push("/" + url.split("/")[1] || "/");
-
+          const url = window.decodeURIComponent(this.props.location.search)
+          this.props.history.push('/' + url.split('/')[1] || '/')
         } else {
           this.setState({
             error: {
@@ -101,19 +96,10 @@ class Savings extends Component {
           })
         }
       })
-      .catch(e => alert(e))
-       e.target.concept.value = ""
-       e.target.quantity.value = ""
-       e.target.savingFor.value = "1"
-       e.target.duration.value= ""
-       e.target.period.value="0"
-       this.setState({
-        selectedDate: new Date()
-      })
+    this.props.history.push('/savings')
   }
 
-
-  render() {
+  render () {
     const { classes } = this.props
 
     return (
@@ -121,8 +107,11 @@ class Savings extends Component {
         <div className='container'>
           <div className='row'>
             <div className='frm col-sm-4'>
-              <Card cardTitle='Savings Goal' picture={ExpensesImage}>
+              <Card picture={ExpensesImage}>
                 <form onSubmit={this.onSubmit}>
+                  <div class='row'>
+                    <div class='col-6 colorBlue'>Saving Goals</div>
+                  </div>
                   <div className='form-group'>
                     <TextField
                       required
@@ -143,7 +132,10 @@ class Savings extends Component {
                   </div>
                   <div className='form-group btnExp'>
                     <div>
-                      <select name='savingFor' className='browser-default custom-select'>
+                      <select
+                        name='savingFor'
+                        className='browser-default custom-select'
+                      >
                         <option value='1'>Choose your Saving for</option>
                         <option value='Weekly'>Weekly</option>
                         <option value='Biweekly'>Biweekly</option>
@@ -153,7 +145,11 @@ class Savings extends Component {
                   </div>
                   <div className='form-group'>
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                      <Grid container className={classes.grid} justify='space-around'>
+                      <Grid
+                        container
+                        className={classes.grid}
+                        justify='space-around'
+                      >
                         <DatePicker
                           margin='normal'
                           label='Date'
@@ -174,8 +170,11 @@ class Savings extends Component {
                   </div>
                   <div className='form-group btnExp'>
                     <div>
-                      <select name='period' className='browser-default custom-select'>
-                        <option value="0">Choose your Saving for</option>
+                      <select
+                        name='period'
+                        className='browser-default custom-select'
+                      >
+                        <option value='0'>Choose your period for</option>
                         <option value='1'>Day</option>
                         <option value='2'>Week</option>
                         <option value='3'>Month</option>

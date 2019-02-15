@@ -1,44 +1,44 @@
 .dashboardContainer {
-    min-height: 200vh;
-    font-size: 28px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    /* background: #000; */
-    background-image: linear-gradient(#4caf5024, #4caf5061),
-      url("../../image/banner1.jpeg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
-  }
+  min-height: 200vh;
+  font-size: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* background: #000; */
+  background-image: linear-gradient(#4caf5024, #4caf5061),
+    url("../../image/banner1.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
 
-  .colorGreen{
-    color:rgb(26, 112, 26);
-    font-size: 20px;
-  }
+.colorGreen {
+  color: rgb(26, 112, 26);
+  font-size: 20px;
+}
 
+.colorRed {
+  color: rgb(235, 4, 4);
+  font-size: 20px;
+}
 
-  .colorRed{
-    color:rgb(235, 4, 4);
-    font-size: 20px;
-  }
+.colorPur {
+  color: rgb(90, 54, 158);
+  font-size: 20px;
+}
 
-  .colorPur{
-    color:rgb(90, 54, 158);
-    font-size: 20px;
-  }
+.colorBlue {
+  color: rgb(48, 113, 211);
+  font-size: 20px;
+}
 
-  .colorBlue{
-    color:rgb(48, 113, 211);
-    font-size: 20px;
-  }
+.textDash {
+  font-size: 35px;
+  text-align: center;
+}
 
-  .textDash{
-    font-size: 35px;
-    text-align: center;
-  }
-
-  .marginDash{
-margin: 40px;
-  }
+.marginDash {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}

@@ -23,7 +23,7 @@
   margin-top: 40px;
 }
 
-.expUpContainer{
+.expUpContainer {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -37,7 +37,12 @@
   background-attachment: fixed;
 }
 
-.marginlist{
+.marginlist {
   margin: 60px;
   min-height: 100vh;
+}
+
+.inputExp {
+  width: 10px;
+  height: 10px;
 }

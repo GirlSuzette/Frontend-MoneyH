@@ -13,21 +13,21 @@ import icon3 from '../../image/icon3.jpg'
 import './home.css'
 
 export default class Home extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.goNext = this.goNext.bind(this)
     this.goPrev = this.goPrev.bind(this)
     this.swiper = null
   }
 
-  goNext() {
+  goNext () {
     if (this.swiper) this.swiper.slideNext()
   }
 
-  goPrev() {
+  goPrev () {
     if (this.swiper) this.swiper.slidePrev()
   }
-  render() {
+  render () {
     const params = {
       spaceBetween: 100,
       centeredSlides: true,
@@ -50,7 +50,11 @@ export default class Home extends Component {
         <div>
           <Swiper {...params}>
             <div>
-              <img class='img-responsive' src={imgThree} alt='Smiley face' />
+              <img
+                class='img-responsive imgHe'
+                src={imgThree}
+                alt='Smiley face'
+              />
             </div>
             <div>
               <img class='img-responsive' src={imgFive} alt='Smiley face' />
@@ -66,38 +70,64 @@ export default class Home extends Component {
             </div>
           </Swiper>
         </div>
-        <div class="jumbotron text-center">
+        <div class='jumbotron text-center'>
           <h1>Money Home</h1>
-          <p>It tells you what you've spent the money on and helps you optimize your daily expenses.</p>
+          <p>
+            It tells you what you've spent the money on and helps you optimize
+            your daily expenses.
+          </p>
         </div>
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="row textHome">
+        <div class='container'>
+          <div class='row'>
+            <div class='col-sm-6'>
+              <div class='row textHome'>
                 <img src={imgSix} alt='Smiley face' /> <br />
                 <p>See whether you spend less than you earn </p>
               </div>
             </div>
-            <div class="col-sm-6">
-              <div class="row textHome">
+            <div class='col-sm-6'>
+              <div class='row textHome'>
                 <img src={imgSeven} alt='Smiley face' />
-                <p>The app works intuitive, it makes it super easy to control your money. It helps me to develop healthy spending habits</p>
+                <p>
+                  The app works intuitive, it makes it super easy to control
+                  your money. It helps me to develop healthy spending habits
+                </p>
               </div>
             </div>
           </div>
           <div>
-            <div class="col3 text-center">
-              <img class='img-responsive' src={icon3} alt='Smiley face' width='70' height='70' />
+            <div class='col3 text-center'>
+              <img
+                class='img-responsive'
+                src={icon3}
+                alt='Smiley face'
+                width='70'
+                height='70'
+              />
               <h3>Reminders</h3>
               <p>Will notify you to pay the bill or not to exceed the budget</p>
             </div>
-            <div class="col3">
-              <img class='img-responsive' src={icon2} alt='Smiley face' width='70' height='70' />
+            <div class='col3'>
+              <img
+                class='img-responsive'
+                src={icon2}
+                alt='Smiley face'
+                width='70'
+                height='70'
+              />
               <h3>Saving</h3>
-              <p>See where your money goes and where they come from every month</p>
+              <p>
+                See where your money goes and where they come from every month
+              </p>
             </div>
-            <div class="col3 text-center">
-              <img class='img-responsive' src={icon1} alt='Smiley face' width='70' height='70' />
+            <div class='col3 text-center'>
+              <img
+                class='img-responsive'
+                src={icon1}
+                alt='Smiley face'
+                width='70'
+                height='70'
+              />
               <h3>Graphic</h3>
               <p>Analyze your fiance simple and easy to understand graphic</p>
             </div>

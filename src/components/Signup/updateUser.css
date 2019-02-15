@@ -1,8 +1,17 @@
 #registration-form .imageUp {
+  float: left;
+  width: 50%;
+  background-size: cover;
+  background-position: 25%;
+}
+
+@media screen and (min-width: 1024px) {
+  #registration-form .imageUp {
     float: left;
     background-image: url("../../image/graficas1.jpg");
     height: 500px;
     width: 50%;
     background-size: cover;
     background-position: 25%;
+  }
 }

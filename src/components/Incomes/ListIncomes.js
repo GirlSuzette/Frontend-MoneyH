@@ -1,54 +1,114 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import './Income.css'
 
-
 export default class ListIncomes extends Component {
-
-    render() {
-        return (
-            <React.Fragment>
-                <div class='container marginlist'>
-                    <div class="row">
-                    </div>
-                    <div class="jumbotron">
-                        <div class="row">
-                            <div class="col-md-6 text-center">
-                                <div className='form-group'>
-                                    <div class="row">
-                                        <div class="col-12 colorGreen ">January income 2019 $ 20,342.43</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <table class="table">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">Recibido</th>
-                                <th scope="col">Concept</th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td scope="row"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1" /></td>
-                                <td>Sueldo</td>
-                                <td>$ 15,000.00</td>
-                                <td>2019-01-01</td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1" /></th>
-                                <td>Frelancer</td>
-                                <td>$ 5,000.00</td>
-                                <td>2019-01-02</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-
-            </React.Fragment>
-        );
+  constructor () {
+    super()
+    this.state = {
+      users: [],
+      local: '',
+      incomes: []
     }
+  }
+
+  calculateTotal () {
+    const prices = this.state.incomes.map(p => p.quantity)
+    return prices.reduce((a, b) => a + b, 0)
+  }
+
+  componentDidMount () {
+    fetch('https://cryptic-retreat-15738.herokuapp.com/api/v1/users')
+      .then(response => response.json())
+      .then(data => {
+        // console.log(data)
+        this.setState({
+          users: data.data
+        })
+
+        const token = localStorage.getItem('token')
+        var base64Url = token.split('.')[1]
+        var base64 = base64Url.replace('-', '+').replace('_', '/')
+        const t = JSON.parse(window.atob(base64))
+        // console.log(t.email)
+        const currentUser = data.data.filter(user => {
+          if (user.email === t.email) {
+            this.setState({ user: user })
+            return user
+          }
+        })
+
+        this.getIncomes(currentUser)
+      })
+  }
+
+  getIncomes = currentUser => {
+    // console.log(currentUser)
+    const userId = currentUser[0]._id
+    console.log(userId)
+    const API_URL = 'https://cryptic-retreat-15738.herokuapp.com/api/v1'
+    fetch(`${API_URL}/users/${userId}/incomes`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        this.setState({
+          incomes: data.data
+        })
+      })
+      .catch(e => alert(e))
+  }
+
+  render () {
+    return (
+      <React.Fragment>
+        <div class='container marginlist'>
+          <div class='row' />
+          <div class='jumbotron'>
+            <div class='row'>
+              <div class='col-md-6 text-center'>
+                <div className='form-group'>
+                  <div class='row'>
+                    <div class='col-12 colorGreen '>
+                      January income 2019 $ {this.calculateTotal()}.00
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <table class='table'>
+            <thead class='thead-dark'>
+              <tr>
+                <th scope='col'>Recibido</th>
+                <th scope='col'>Concept</th>
+                <th scope='col'>Quantity</th>
+                <th scope='col'>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.incomes.map(expense => (
+                <tr>
+                  <td>
+                    <input
+                      className='form-check-input inputExp'
+                      type='checkbox'
+                      value=''
+                      id='defaultCheck1'
+                    />
+                  </td>
+                  <td>{expense.concept}</td>
+                  <td>{expense.quantity}</td>
+                  <td>{expense.date}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </React.Fragment>
+    )
+  }
 }

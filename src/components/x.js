@@ -11,8 +11,8 @@ class UpdateUser extends React.Component {
       status: false,
       message: ''
     },
-    fullName: '',
-    email: '',
+    fullName: 'Cindy',
+    email: 'su',
     password: '',
     phoneNumber: ''
   }
@@ -27,6 +27,7 @@ class UpdateUser extends React.Component {
     fetch('https://cryptic-retreat-15738.herokuapp.com/api/v1/users')
       .then(response => response.json())
       .then(data => {
+        // console.log(data)
         this.setState({
           users: data.data
         })
@@ -49,7 +50,7 @@ class UpdateUser extends React.Component {
         return id
       })
   }
-  onSubmit = e => {
+  updateUser = e => {
     e.preventDefault()
 
     const API_URL = 'https://cryptic-retreat-15738.herokuapp.com/api/v1/'
@@ -68,13 +69,7 @@ class UpdateUser extends React.Component {
     })
       .then(response => response.json())
       .then(data => {
-        this.setState({
-          fullName: data.data.fullName,
-          email: data.data.email,
-          password: data.data.password,
-          phoneNumber: data.data.phoneNumber
-        })
-
+        console.log(data)
         if (typeof data.token !== 'undefined') {
           localStorage.setItem('token', data.token)
           const url = window.decodeURIComponent(this.props.location.search)
@@ -86,6 +81,10 @@ class UpdateUser extends React.Component {
           }
         } else {
           this.setState({
+            fullName: data.data.fullName,
+            email: data.data.email,
+            password: data.data.password,
+            phoneNumber: data.data.phoneNumber,
             error: {
               status: true,
               message: data.message
@@ -96,6 +95,7 @@ class UpdateUser extends React.Component {
       .catch(e => alert(e))
   }
   render () {
+    console.log(this.state.fullName)
     return (
       <React.Fragment>
         <div className='thislogin'>
@@ -108,33 +108,34 @@ class UpdateUser extends React.Component {
                   <form onSubmit={this.onSubmit}>
                     <div className='form-group'>
                       <TextField
+                        value={this.state.fullName}
                         required
                         name='fullName'
                         type='text'
                         label='Name'
                         fullWidth
-                        value={this.state.fullName}
                         // onChange={this.handleChange}
                       />
                     </div>
                     <div className='form-group'>
                       <TextField
                         required
+                        value={this.state.email}
                         name='email'
                         type='email'
                         label='Email'
-                        value={this.state.email}
                         fullWidth
+                        disable='true'
                         // onChange={this.handleChange}
                       />
                     </div>
                     <div className='form-group'>
                       <TextField
                         required
+                        value={this.state.phoneNumber}
                         name='number'
                         type='number'
-                        label='Phome Number'
-                        value={this.state.phoneNumber}
+                        label='Phone Number'
                         fullWidth
                         // onChange={this.handleChange}
                       />
@@ -142,10 +143,10 @@ class UpdateUser extends React.Component {
                     <div className='form-group'>
                       <TextField
                         required
+                        value={this.state.password}
                         name='password'
                         type='password'
                         label='Password'
-                        value={this.state.password}
                         fullWidth
 
                         // onChange={this.handleChange}
@@ -161,7 +162,7 @@ class UpdateUser extends React.Component {
                         variant='contained'
                         onClick={this.handleLogout}
                       >
-                        Saved
+                        Update
                       </Button>
                     </div>
                   </form>
