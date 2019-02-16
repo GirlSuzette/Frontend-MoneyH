@@ -51,42 +51,42 @@ export default class Home extends Component {
           <Swiper {...params}>
             <div>
               <img
-                class='img-responsive imgHe'
+                className='img-responsive imgHe'
                 src={imgThree}
                 alt='Smiley face'
               />
             </div>
             <div>
-              <img class='img-responsive' src={imgFive} alt='Smiley face' />
+              <img className='img-responsive' src={imgFive} alt='Smiley face' />
             </div>
             <div>
-              <img class='img-responsive' src={imgTwoo} alt='Smiley face' />
+              <img className='img-responsive' src={imgTwoo} alt='Smiley face' />
             </div>
             <div>
-              <img class='img-responsive' src={imgFour} alt='Smiley face' />
+              <img className='img-responsive' src={imgFour} alt='Smiley face' />
             </div>
             <div>
-              <img class='img-responsive' src={imgOne} alt='Smiley face' />
+              <img className='img-responsive' src={imgOne} alt='Smiley face' />
             </div>
           </Swiper>
         </div>
-        <div class='jumbotron text-center'>
+        <div className='jumbotron text-center'>
           <h1>Money Home</h1>
           <p>
             It tells you what you've spent the money on and helps you optimize
             your daily expenses.
           </p>
         </div>
-        <div class='container'>
-          <div class='row'>
-            <div class='col-sm-6'>
-              <div class='row textHome'>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-sm-6'>
+              <div className='row textHome'>
                 <img src={imgSix} alt='Smiley face' /> <br />
                 <p>See whether you spend less than you earn </p>
               </div>
             </div>
-            <div class='col-sm-6'>
-              <div class='row textHome'>
+            <div className='col-sm-6'>
+              <div className='row textHome'>
                 <img src={imgSeven} alt='Smiley face' />
                 <p>
                   The app works intuitive, it makes it super easy to control
@@ -96,9 +96,9 @@ export default class Home extends Component {
             </div>
           </div>
           <div>
-            <div class='col3 text-center'>
+            <div className='col3 text-center'>
               <img
-                class='img-responsive'
+                className='img-responsive'
                 src={icon3}
                 alt='Smiley face'
                 width='70'
@@ -107,9 +107,9 @@ export default class Home extends Component {
               <h3>Reminders</h3>
               <p>Will notify you to pay the bill or not to exceed the budget</p>
             </div>
-            <div class='col3'>
+            <div className='col3'>
               <img
-                class='img-responsive'
+                className='img-responsive'
                 src={icon2}
                 alt='Smiley face'
                 width='70'
@@ -120,9 +120,9 @@ export default class Home extends Component {
                 See where your money goes and where they come from every month
               </p>
             </div>
-            <div class='col3 text-center'>
+            <div className='col3 text-center'>
               <img
-                class='img-responsive'
+                className='img-responsive'
                 src={icon1}
                 alt='Smiley face'
                 width='70'

@@ -61,7 +61,7 @@ class Reminder extends Component {
                     />
                   </div>
 
-                  <div class='form-group btnExp'>
+                  <div className='form-group btnExp'>
                     <Button type='submit' value='Login' variant='contained'>
                       Save
                     </Button>

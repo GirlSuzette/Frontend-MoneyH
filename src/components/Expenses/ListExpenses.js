@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './expenses.css'
+import Button from '@material-ui/core/Button'
 
 export default class ListExpenses extends Component {
   constructor () {
@@ -7,8 +8,14 @@ export default class ListExpenses extends Component {
     this.state = {
       users: [],
       local: '',
-      expenses: []
+      expenses: [],
+      expensesDelete: []
     }
+  }
+
+  calculateTotal () {
+    const prices = this.state.expenses.map(p => p.quantity)
+    return prices.reduce((a, b) => a + b, 0)
   }
 
   componentDidMount () {
@@ -49,9 +56,28 @@ export default class ListExpenses extends Component {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data)
+        // console.log(data)
         this.setState({
           expenses: data.data
+        })
+      })
+      .catch(e => alert(e))
+  }
+
+  deleteExpenses = currentUser => {
+    const userId = currentUser[0]._id
+    const API_URL = 'https://cryptic-retreat-15738.herokuapp.com/api/v1'
+    fetch(`${API_URL}/users/${userId}/expenses/${this.state.expenses}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        this.setState({
+          expensesDelete: data.data
         })
       })
       .catch(e => alert(e))
@@ -60,28 +86,29 @@ export default class ListExpenses extends Component {
   render () {
     return (
       <React.Fragment>
-        <div class='container marginlist'>
-          <div class='row' />
-          <div class='jumbotron'>
-            <div class='row'>
-              <div class='col-md-6 text-center'>
+        <div className='container '>
+          <div className='row marginlist3' />
+          <div className='jumbotron '>
+            <div className='row'>
+              <div className='col-md-6 text-center'>
                 <div className='form-group'>
-                  <div class='row'>
-                    <div class='col-12 colorRed '>
-                      January expenses 2019 $ 14,342.43
+                  <div className='row'>
+                    <div className='col-12 colorRed '>
+                      Expenses $ {this.calculateTotal()}.00
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <table class='table'>
-            <thead class='thead-dark'>
+          <table className='table'>
+            <thead className='thead-dark'>
               <tr>
                 <th scope='col'>Pagado</th>
                 <th scope='col'>Concept</th>
                 <th scope='col'>Quantity</th>
                 <th scope='col'>Date</th>
+                <th scope='col'>Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -98,6 +125,11 @@ export default class ListExpenses extends Component {
                   <td>{expense.concept}</td>
                   <td>{expense.quantity}</td>
                   <td>{expense.date}</td>
+                  <td>
+                    <Button type='submit' value='Incomes' variant='contained'>
+                      Delete {this.state.expensesDelete}
+                    </Button>
+                  </td>
                 </tr>
               ))}
             </tbody>

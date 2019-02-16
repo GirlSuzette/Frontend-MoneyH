@@ -109,8 +109,8 @@ class Savings extends Component {
             <div className='frm col-sm-4'>
               <Card picture={ExpensesImage}>
                 <form onSubmit={this.onSubmit}>
-                  <div class='row'>
-                    <div class='col-6 colorBlue'>Saving Goals</div>
+                  <div className='row'>
+                    <div className='col-6 colorBlue'>Saving Goals</div>
                   </div>
                   <div className='form-group'>
                     <TextField

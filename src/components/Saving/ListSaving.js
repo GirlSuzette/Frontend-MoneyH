@@ -60,14 +60,14 @@ export default class ListSavings extends Component {
   render () {
     return (
       <React.Fragment>
-        <div class='container marginlist'>
-          <div class='row' />
-          <div class='jumbotron'>
-            <div class='row'>
-              <div class='col-md-6 text-center'>
+        <div className='container marginlist'>
+          <div className='row' />
+          <div className='jumbotron'>
+            <div className='row'>
+              <div className='col-md-6 text-center'>
                 <div className='form-group'>
-                  <div class='row'>
-                    <div class='col-12 colorBlue '>
+                  <div className='row'>
+                    <div className='col-12 colorBlue '>
                       Saving goals Car hitch $ 75,342.43/100,000.00
                     </div>
                   </div>
@@ -75,8 +75,8 @@ export default class ListSavings extends Component {
               </div>
             </div>
           </div>
-          <table class='table'>
-            <thead class='thead-dark'>
+          <table className='table'>
+            <thead className='thead-dark'>
               <tr>
                 <th scope='col'>Ahorrado</th>
                 <th scope='col'>Quantity</th>

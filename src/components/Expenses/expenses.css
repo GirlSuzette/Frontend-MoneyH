@@ -37,12 +37,36 @@
   background-attachment: fixed;
 }
 
-.marginlist {
-  margin: 60px;
-  min-height: 100vh;
-}
-
 .inputExp {
   width: 10px;
   height: 10px;
+}
+
+.container {
+  margin-top: 50px;
+}
+
+.table {
+  background-color: #fff;
+  color: #363636;
+  width: 50%;
+}
+
+.table .thead-dark th {
+  font-size: 11px;
+  color: #fff;
+  background-color: #212529;
+  border-color: #32383e;
+}
+table.table {
+  width: 100%;
+}
+
+td {
+  font-size: 13px;
+}
+@media screen and (min-width: 1024px) {
+  .table {
+    width: 100%;
+  }
 }

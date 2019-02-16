@@ -3,7 +3,6 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import './signup.css'
 
-
 class Signup extends React.Component {
   state = {
     error: {
@@ -54,9 +53,9 @@ class Signup extends React.Component {
         }
       })
       .catch(e => alert(e))
-      this.props.history.push('/login')
+    this.props.history.push('/login')
   }
-  render() {
+  render () {
     return (
       <React.Fragment>
         <div className='thislogin'>
@@ -74,7 +73,7 @@ class Signup extends React.Component {
                         type='text'
                         label='Name'
                         fullWidth
-                      // onChange={this.handleChange}
+                        // onChange={this.handleChange}
                       />
                     </div>
                     <div className='form-group'>
@@ -84,7 +83,7 @@ class Signup extends React.Component {
                         type='email'
                         label='Email'
                         fullWidth
-                      // onChange={this.handleChange}
+                        // onChange={this.handleChange}
                       />
                     </div>
                     <div className='form-group'>
@@ -93,9 +92,9 @@ class Signup extends React.Component {
                         name='number'
                         type='number'
                         label='Phone Number'
-                        maxlength="10"
+                        maxlength='10'
                         fullWidth
-                      // onChange={this.handleChange}
+                        // onChange={this.handleChange}
                       />
                     </div>
                     <div className='form-group'>
@@ -105,11 +104,13 @@ class Signup extends React.Component {
                         type='password'
                         label='Password'
                         fullWidth
-                      // onChange={this.handleChange}
+                        // onChange={this.handleChange}
                       />
                     </div>
-                    {this.state.error.status && <p>{this.state.error.message}</p>}
-                    <div class='form-group'>
+                    {this.state.error.status && (
+                      <p>{this.state.error.message}</p>
+                    )}
+                    <div className='form-group'>
                       <Button
                         type='submit'
                         value='Login'
@@ -117,7 +118,7 @@ class Signup extends React.Component {
                         onClick={this.handleLogout}
                       >
                         Saved
-                  </Button>
+                      </Button>
                     </div>
                   </form>
                 </div>

@@ -16,8 +16,13 @@
   background-attachment: fixed;
 }
 
+.table .thead-dark th {
+  font-size: 10px;
+  color: #fff;
+  background-color: #212529;
+  border-color: #32383e;
+}
 
-.marginlist{
-  margin: 60px;
+.marginlist {
   min-height: 100vh;
 }

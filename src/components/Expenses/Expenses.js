@@ -144,9 +144,9 @@ class Expenses extends Component {
             <div className='frm col-sm-4'>
               <Card picture={ExpensesImage}>
                 <form onSubmit={this.onSubmit}>
-                  <div class='row'>
-                    <div class='col-6 colorRed'>Expenses</div>
-                    <div class='col-6 colorRed'>
+                  <div className='row'>
+                    <div className='col-6 colorRed'>Expenses</div>
+                    <div className='col-6 colorRed'>
                       {' '}
                       $ {this.calculateTotal()}.00
                     </div>
@@ -209,7 +209,7 @@ class Expenses extends Component {
                       </select>
                     </div>
                   </div>
-                  <div class='form-group btnExp'>
+                  <div className='form-group btnExp'>
                     <Button type='submit' value='Expenses' variant='contained'>
                       Save Expenses
                     </Button>

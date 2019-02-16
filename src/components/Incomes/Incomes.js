@@ -131,13 +131,13 @@ class Incomes extends Component {
     return (
       <div className='incomesContainer'>
         <div className='container'>
-          <div class='row'>
+          <div className='row'>
             <div className='frm col-sm-4'>
               <Card picture={IncomesImage}>
                 <form onSubmit={this.onSubmit}>
-                  <div class='row'>
-                    <div class='col-6 colorGreen'>Incomes</div>
-                    <div class='col- colorGreen'>
+                  <div className='row'>
+                    <div className='col-6 colorGreen'>Incomes</div>
+                    <div className='col- colorGreen'>
                       $ {this.calculateTotal()}.00
                     </div>
                   </div>
@@ -187,7 +187,7 @@ class Incomes extends Component {
                       </select>
                     </div>
                   </div>
-                  <div class='form-group btnExp'>
+                  <div className='form-group btnExp'>
                     <Button type='submit' value='Incomes' variant='contained'>
                       Save Income
                     </Button>

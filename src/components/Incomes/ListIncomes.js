@@ -65,14 +65,14 @@ export default class ListIncomes extends Component {
   render () {
     return (
       <React.Fragment>
-        <div class='container marginlist'>
-          <div class='row' />
-          <div class='jumbotron'>
-            <div class='row'>
-              <div class='col-md-6 text-center'>
+        <div className='container marginlist'>
+          <div className='row' />
+          <div className='jumbotron'>
+            <div className='row marginlist3'>
+              <div className='col-md-6 text-center'>
                 <div className='form-group'>
-                  <div class='row'>
-                    <div class='col-12 colorGreen '>
+                  <div className='row'>
+                    <div className='col-12 colorGreen '>
                       January income 2019 $ {this.calculateTotal()}.00
                     </div>
                   </div>
@@ -80,8 +80,8 @@ export default class ListIncomes extends Component {
               </div>
             </div>
           </div>
-          <table class='table'>
-            <thead class='thead-dark'>
+          <table className='table'>
+            <thead className='thead-dark'>
               <tr>
                 <th scope='col'>Recibido</th>
                 <th scope='col'>Concept</th>

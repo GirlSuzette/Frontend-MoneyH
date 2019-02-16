@@ -3,33 +3,31 @@ import { Link } from 'react-router-dom'
 import './Footer.css'
 
 export default class Footer extends Component {
-  render() {
+  render () {
     return (
       <React.Fragment>
-        <footer class='footer-distributed'>
-          <div class='footer-right'>
+        <footer className='footer-distributed'>
+          <div className='footer-right'>
             <div>Follow</div>
             <Link to='#'>
-              <i class='fa fa-facebook' />
+              <i className='fa fa-facebook' />
             </Link>
             <Link to='#'>
-              <i class='fa fa-twitter' />
+              <i className='fa fa-twitter' />
             </Link>
             <Link to='#'>
-              <i class='fa fa-linkedin' />
+              <i className='fa fa-linkedin' />
             </Link>
             <Link to='#'>
-              <i class='fa fa-github' />
+              <i className='fa fa-github' />
             </Link>
           </div>
-
-          <div class='footer-left'>
-            <p class='footer-links'>
+          <div className='footer-left'>
+            <p className='footer-links'>
               <Link to='/'>Home</Link>·<Link to='#'>Income</Link>·
               <Link to='/expenses'>Expenses</Link>·<Link to='#'>Saving</Link>·
               <Link to='#'>Contact</Link>
             </p>
-
             <p>Company Money Home &copy; 2019</p>
           </div>
         </footer>

@@ -49,9 +49,7 @@ class UpdateUser extends React.Component {
         return id
       })
   }
-  onSubmit = e => {
-    e.preventDefault()
-
+  onSubmit = () => {
     const API_URL = 'https://cryptic-retreat-15738.herokuapp.com/api/v1/'
 
     fetch(`${API_URL}/users/${this.state.user._id}`, {
@@ -154,7 +152,7 @@ class UpdateUser extends React.Component {
                     {this.state.error.status && (
                       <p>{this.state.error.message}</p>
                     )}
-                    <div class='form-group'>
+                    <div className='form-group'>
                       <Button
                         type='submit'
                         value='Login'

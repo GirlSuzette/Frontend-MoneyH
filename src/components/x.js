@@ -69,6 +69,12 @@ class UpdateUser extends React.Component {
     })
       .then(response => response.json())
       .then(data => {
+        this.setState({
+          fullName: data.data.fullName,
+          email: data.data.email,
+          password: data.data.password,
+          phoneNumber: data.data.phoneNumber
+        })
         console.log(data)
         if (typeof data.token !== 'undefined') {
           localStorage.setItem('token', data.token)
@@ -81,10 +87,6 @@ class UpdateUser extends React.Component {
           }
         } else {
           this.setState({
-            fullName: data.data.fullName,
-            email: data.data.email,
-            password: data.data.password,
-            phoneNumber: data.data.phoneNumber,
             error: {
               status: true,
               message: data.message
