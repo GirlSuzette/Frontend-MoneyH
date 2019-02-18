@@ -22,3 +22,10 @@
 .btnExp {
   margin-top: 40px;
 }
+
+.table {
+  background-color: #fff;
+  color: #363636;
+  width: 100%;
+  font-size: 11px;
+}

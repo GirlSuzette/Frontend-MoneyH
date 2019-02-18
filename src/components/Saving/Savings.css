@@ -16,7 +16,7 @@
   background-attachment: fixed;
 }
 
-.marginlist{
-  margin: 60px;
+.marginlist {
+  margin-top: 60px;
   min-height: 100vh;
 }

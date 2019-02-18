@@ -83,9 +83,11 @@ class Menu extends React.Component {
             </Link>
           )}
           {isLoggedIn() && (
-            <div>
-              <span className='logoup' onClick={this.handleLogout}>
-                Logout<i className='material-icons'>exit_to_app</i>
+            <div className='MenuFlex'>
+              <span className='logoup MenuFlex' onClick={this.handleLogout}>
+                <div>
+                  <i className='material-icons'>exit_to_app</i>
+                </div>
               </span>
             </div>
           )}
@@ -112,18 +114,18 @@ class Menu extends React.Component {
                 </Link>
               </ListItem>
               <ListItem button>
-                <Link className='side' to='/incomes'>
+                <Link className='side' to='/listincomes'>
                   Incomes
                 </Link>
               </ListItem>
               <Divider />
               <ListItem button>
-                <Link className='side' to='/expenses'>
+                <Link className='side' to='/listexpenses'>
                   Expenses
                 </Link>
               </ListItem>
               <ListItem button>
-                <Link className='side' to='/savings'>
+                <Link className='side' to='/listsavings'>
                   Saving goals
                 </Link>
               </ListItem>

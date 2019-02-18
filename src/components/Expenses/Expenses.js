@@ -9,6 +9,8 @@ import Grid from '@material-ui/core/Grid'
 import { withStyles } from '@material-ui/core/styles'
 import DateFnsUtils from '@date-io/date-fns'
 import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers'
+import { Link } from 'react-router-dom'
+import AddCircle from '@material-ui/icons/AddCircle'
 
 const styles = {
   grid: {
@@ -170,6 +172,16 @@ class Expenses extends Component {
                     />
                   </div>
                   <div className='form-group'>
+                    <div className='btnAdd'>
+                      <Link to='/reminders'>
+                        <AddCircle />
+                      </Link>
+                      <div>
+                        <span>Add payment reminder</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className='form-group'>
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
                       <Grid
                         container
@@ -214,6 +226,9 @@ class Expenses extends Component {
                       Save Expenses
                     </Button>
                   </div>
+                  <Link className='linkHistory' to='/listexpenses'>
+                    Expenses history
+                  </Link>
                 </form>
               </Card>
             </div>

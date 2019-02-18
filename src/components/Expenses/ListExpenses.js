@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import './expenses.css'
+import { Link } from 'react-router-dom'
+import AddCircle from '@material-ui/icons/AddCircle'
 
 export default class ListExpenses extends Component {
   constructor () {
@@ -9,6 +11,11 @@ export default class ListExpenses extends Component {
       local: '',
       expenses: []
     }
+  }
+
+  calculateTotal () {
+    const prices = this.state.expenses.map(p => p.quantity)
+    return prices.reduce((a, b) => a + b, 0)
   }
 
   componentDidMount () {
@@ -68,7 +75,15 @@ export default class ListExpenses extends Component {
                 <div className='form-group'>
                   <div class='row'>
                     <div class='col-12 colorRed '>
-                      January expenses 2019 $ 14,342.43
+                      Expenses $ {this.calculateTotal()}.00
+                      <div className='btnAdd'>
+                        <Link to='/reminders'>
+                          <AddCircle />
+                        </Link>
+                        <div>
+                          <span>Add Expenses</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

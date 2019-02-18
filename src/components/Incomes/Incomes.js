@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid'
 import { withStyles } from '@material-ui/core/styles'
 import DateFnsUtils from '@date-io/date-fns'
 import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers'
+import { Link } from 'react-router-dom'
 
 const styles = {
   grid: {
@@ -192,6 +193,9 @@ class Incomes extends Component {
                       Save Income
                     </Button>
                   </div>
+                  <Link className='linkHistory' to='/listexpenses'>
+                    Incomes history
+                  </Link>
                 </form>
               </Card>
             </div>

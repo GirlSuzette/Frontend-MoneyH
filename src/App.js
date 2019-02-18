@@ -17,6 +17,7 @@ import ListIncomes from './components/Incomes/ListIncomes'
 import ListExpenses from './components/Expenses/ListExpenses'
 import ListSavings from './components/Saving/ListSaving'
 import MenuApp from './components/MenuMovil/MenuMovil'
+import Reminder from './components/Reminder/Reminder'
 
 import './App.css'
 
@@ -37,6 +38,7 @@ class App extends Component {
           <PrivateRoute path='/listincomes' exact component={ListIncomes} />
           <PrivateRoute path='/listexpenses' exact component={ListExpenses} />
           <PrivateRoute path='/listsavings' exact component={ListSavings} />
+          <PrivateRoute path='/reminders' exact component={Reminder} />
         </Switch>
         <Footer />
         <MenuApp />

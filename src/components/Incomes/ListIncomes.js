@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import './Income.css'
+import { Link } from 'react-router-dom'
+import AddCircle from '@material-ui/icons/AddCircle'
+import Moment from 'react-moment'
 
 export default class ListIncomes extends Component {
   constructor () {
@@ -71,19 +74,31 @@ export default class ListIncomes extends Component {
             <div class='row'>
               <div class='col-md-6 text-center'>
                 <div className='form-group'>
-                  <div class='row'>
+                  <div>
                     <div class='col-12 colorGreen '>
-                      January income 2019 $ {this.calculateTotal()}.00
+                      Income ${' '}
+                      {this.calculateTotal()
+                        .toFixed(2)
+                        .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          <div className='form-group'>
+            <div className='btnAddInc'>
+              <Link to='/reminders'>
+                <AddCircle />
+              </Link>
+              <div className='textAdd'>
+                <span>Add Income</span>
+              </div>
+            </div>
+          </div>
           <table class='table'>
             <thead class='thead-dark'>
               <tr>
-                <th scope='col'>Recibido</th>
                 <th scope='col'>Concept</th>
                 <th scope='col'>Quantity</th>
                 <th scope='col'>Date</th>
@@ -92,17 +107,16 @@ export default class ListIncomes extends Component {
             <tbody>
               {this.state.incomes.map(expense => (
                 <tr>
-                  <td>
-                    <input
-                      className='form-check-input inputExp'
-                      type='checkbox'
-                      value=''
-                      id='defaultCheck1'
-                    />
-                  </td>
                   <td>{expense.concept}</td>
-                  <td>{expense.quantity}</td>
-                  <td>{expense.date}</td>
+                  <td>
+                    {'$ ' +
+                      expense.quantity
+                        .toFixed(2)
+                        .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
+                  </td>
+                  <td>
+                    <Moment format='YYYY/MM/DD'>{expense.date}</Moment>
+                  </td>
                 </tr>
               ))}
             </tbody>

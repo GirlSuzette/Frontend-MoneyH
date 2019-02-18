@@ -1,5 +1,5 @@
 .frm {
-  margin: 0 auto;
+  margin: 0 nauto;
 }
 
 .incomesContainer {
@@ -16,8 +16,22 @@
   background-attachment: fixed;
 }
 
-
-.marginlist{
-  margin: 60px;
+.marginlist {
+  margin-top: 60px;
   min-height: 100vh;
+}
+
+.btnAddInc {
+  text-align: left;
+  color: darkcyan;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+svg.MuiSvgIcon-root-50 {
+  font-size: 35px;
+}
+
+.textAdd {
+  display: inline-block;
 }
