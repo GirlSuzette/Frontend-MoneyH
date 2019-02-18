@@ -149,10 +149,15 @@ class Expenses extends Component {
                   <div class='row'>
                     <div class='col-6 colorRed'>Expenses</div>
                     <div class='col-6 colorRed'>
-                      {' '}
-                      $ {this.calculateTotal()}.00
+                      ${' '}
+                      {this.calculateTotal()
+                        .toFixed(2)
+                        .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
                     </div>
                   </div>
+                  <Link className='linkHistory' to='/listexpenses'>
+                    History
+                  </Link>
                   <div className='form-group'>
                     <TextField
                       required
@@ -170,16 +175,6 @@ class Expenses extends Component {
                       label='Quantity'
                       fullWidth
                     />
-                  </div>
-                  <div className='form-group'>
-                    <div className='btnAdd'>
-                      <Link to='/reminders'>
-                        <AddCircle />
-                      </Link>
-                      <div>
-                        <span>Add payment reminder</span>
-                      </div>
-                    </div>
                   </div>
                   <div className='form-group'>
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -221,14 +216,26 @@ class Expenses extends Component {
                       </select>
                     </div>
                   </div>
-                  <div class='form-group btnExp'>
-                    <Button type='submit' value='Expenses' variant='contained'>
-                      Save Expenses
+                  <div class='form-group btnExps'>
+                    <Button
+                      className='SubmitBtn'
+                      type='submit'
+                      value='Expenses'
+                      variant='contained'
+                    >
+                      <span className='textSubmit'>Save Expenses</span>
                     </Button>
+                    <div className='form-group'>
+                      <div className='btnAdd'>
+                        <Link to='/reminders'>
+                          <AddCircle />
+                        </Link>
+                        <div>
+                          <span>Add payment reminder</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <Link className='linkHistory' to='/listexpenses'>
-                    Expenses history
-                  </Link>
                 </form>
               </Card>
             </div>

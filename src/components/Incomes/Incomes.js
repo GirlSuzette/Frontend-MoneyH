@@ -139,9 +139,15 @@ class Incomes extends Component {
                   <div class='row'>
                     <div class='col-6 colorGreen'>Incomes</div>
                     <div class='col- colorGreen'>
-                      $ {this.calculateTotal()}.00
+                      ${' '}
+                      {this.calculateTotal()
+                        .toFixed(2)
+                        .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
                     </div>
                   </div>
+                  <Link className='linkHistory' to='/listexpenses'>
+                    History
+                  </Link>
                   <div className='form-group'>
                     <TextField
                       required
@@ -193,9 +199,6 @@ class Incomes extends Component {
                       Save Income
                     </Button>
                   </div>
-                  <Link className='linkHistory' to='/listexpenses'>
-                    Incomes history
-                  </Link>
                 </form>
               </Card>
             </div>

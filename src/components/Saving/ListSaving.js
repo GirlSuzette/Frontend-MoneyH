@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import './Savings.css'
+import Moment from 'react-moment'
+import AddCircle from '@material-ui/icons/AddCircle'
+import { Link } from 'react-router-dom'
 
 export default class ListSavings extends Component {
   constructor () {
@@ -75,10 +78,19 @@ export default class ListSavings extends Component {
               </div>
             </div>
           </div>
+          <div className='form-group'>
+            <div className='btnAddInc'>
+              <Link to='/savings'>
+                <AddCircle />
+              </Link>
+              <div className='textAdd'>
+                <span>Add Saving goals</span>
+              </div>
+            </div>
+          </div>
           <table class='table'>
             <thead class='thead-dark'>
               <tr>
-                <th scope='col'>Ahorrado</th>
                 <th scope='col'>Quantity</th>
                 <th scope='col'>Date</th>
               </tr>
@@ -87,15 +99,14 @@ export default class ListSavings extends Component {
               {this.state.savings.map(saving => (
                 <tr>
                   <td>
-                    <input
-                      className='form-check-input inputExp'
-                      type='checkbox'
-                      value=''
-                      id='defaultCheck1'
-                    />
+                    {'$ ' +
+                      saving.quantity
+                        .toFixed(2)
+                        .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
                   </td>
-                  <td>{saving.quantity}</td>
-                  <td>{saving.startDate}</td>
+                  <td>
+                    <Moment format='YYYY/MM/DD'>{saving.date}</Moment>
+                  </td>
                 </tr>
               ))}
             </tbody>

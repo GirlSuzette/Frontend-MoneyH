@@ -88,7 +88,7 @@ export default class ListIncomes extends Component {
           </div>
           <div className='form-group'>
             <div className='btnAddInc'>
-              <Link to='/reminders'>
+              <Link to='/incomes'>
                 <AddCircle />
               </Link>
               <div className='textAdd'>
@@ -105,17 +105,17 @@ export default class ListIncomes extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.state.incomes.map(expense => (
+              {this.state.incomes.map(income => (
                 <tr>
-                  <td>{expense.concept}</td>
+                  <td>{income.concept}</td>
                   <td>
                     {'$ ' +
-                      expense.quantity
+                      income.quantity
                         .toFixed(2)
                         .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
                   </td>
                   <td>
-                    <Moment format='YYYY/MM/DD'>{expense.date}</Moment>
+                    <Moment format='YYYY/MM/DD'>{income.date}</Moment>
                   </td>
                 </tr>
               ))}

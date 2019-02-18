@@ -111,8 +111,11 @@ class Savings extends Component {
               <Card picture={ExpensesImage}>
                 <form onSubmit={this.onSubmit}>
                   <div class='row'>
-                    <div class='col-6 colorBlue'>Saving Goals</div>
+                    <div class='col-4 colorBlue'>Saving Goals</div>
                   </div>
+                  <Link className='linkHistory' to='/listsavings'>
+                    History
+                  </Link>
                   <div className='form-group'>
                     <TextField
                       required
@@ -187,9 +190,6 @@ class Savings extends Component {
                       Save Saving
                     </Button>
                   </div>
-                  <Link className='linkHistory' to='/listsavings'>
-                    Saving Goals history
-                  </Link>
                 </form>
               </Card>
             </div>

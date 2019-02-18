@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './expenses.css'
 import { Link } from 'react-router-dom'
 import AddCircle from '@material-ui/icons/AddCircle'
+import Moment from 'react-moment'
 
 export default class ListExpenses extends Component {
   constructor () {
@@ -75,25 +76,29 @@ export default class ListExpenses extends Component {
                 <div className='form-group'>
                   <div class='row'>
                     <div class='col-12 colorRed '>
-                      Expenses $ {this.calculateTotal()}.00
-                      <div className='btnAdd'>
-                        <Link to='/reminders'>
-                          <AddCircle />
-                        </Link>
-                        <div>
-                          <span>Add Expenses</span>
-                        </div>
-                      </div>
+                      Expenses ${' '}
+                      {this.calculateTotal()
+                        .toFixed(2)
+                        .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          <div className='form-group'>
+            <div className='btnAddInc'>
+              <Link to='/expenses'>
+                <AddCircle />
+              </Link>
+              <div className='textAdd'>
+                <span>Add Expenses</span>
+              </div>
+            </div>
+          </div>
           <table class='table'>
             <thead class='thead-dark'>
               <tr>
-                <th scope='col'>Pagado</th>
                 <th scope='col'>Concept</th>
                 <th scope='col'>Quantity</th>
                 <th scope='col'>Date</th>
@@ -102,17 +107,16 @@ export default class ListExpenses extends Component {
             <tbody>
               {this.state.expenses.map(expense => (
                 <tr>
-                  <td>
-                    <input
-                      className='form-check-input inputExp'
-                      type='checkbox'
-                      value=''
-                      id='defaultCheck1'
-                    />
-                  </td>
                   <td>{expense.concept}</td>
-                  <td>{expense.quantity}</td>
-                  <td>{expense.date}</td>
+                  <td>
+                    {'$ ' +
+                      expense.quantity
+                        .toFixed(2)
+                        .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
+                  </td>
+                  <td>
+                    <Moment format='YYYY/MM/DD'>{expense.date}</Moment>
+                  </td>
                 </tr>
               ))}
             </tbody>
