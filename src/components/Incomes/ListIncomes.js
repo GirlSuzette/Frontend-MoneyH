@@ -3,6 +3,7 @@ import './Income.css'
 import { Link } from 'react-router-dom'
 import AddCircle from '@material-ui/icons/AddCircle'
 import Moment from 'react-moment'
+import Button from '@material-ui/core/Button'
 
 export default class ListIncomes extends Component {
   constructor () {
@@ -10,12 +11,14 @@ export default class ListIncomes extends Component {
     this.state = {
       users: [],
       local: '',
-      incomes: []
+      incomes: [],
+      incomesMirror: [],
+      incomesdata: []
     }
   }
 
   calculateTotal () {
-    const prices = this.state.incomes.map(p => p.quantity)
+    const prices = this.state.incomesdata.map(p => p.quantity)
     return prices.reduce((a, b) => a + b, 0)
   }
 
@@ -27,7 +30,6 @@ export default class ListIncomes extends Component {
         this.setState({
           users: data.data
         })
-
         const token = localStorage.getItem('token')
         var base64Url = token.split('.')[1]
         var base64 = base64Url.replace('-', '+').replace('_', '/')
@@ -59,16 +61,47 @@ export default class ListIncomes extends Component {
       .then(data => {
         console.log(data)
         this.setState({
-          incomes: data.data
+          incomesdata: data.data,
+          incomes: data.data,
+          incomesMirror: data.data
         })
       })
       .catch(e => alert(e))
+  }
+  searchByName = e => {
+    let incomes = [...this.state.incomes]
+    var query = e.target.value
+    if (query !== '') {
+      var coincidences = incomes.filter(
+        expense =>
+          expense.concept.toLowerCase().indexOf(query.toLowerCase()) !== -1
+      )
+      this.setState({
+        incomes: coincidences
+      })
+    } else {
+      this.setState({
+        incomes: this.state.incomesMirror
+      })
+    }
   }
 
   render () {
     return (
       <React.Fragment>
         <div class='container marginlist'>
+          <div class='row' />
+          <div className='flexBus'>
+            <Button type='submit' value='Expenses' variant='contained'>
+              Update
+            </Button>
+            <input
+              onChange={this.searchByName}
+              className='inputSearch'
+              type='text'
+              placeholder='Search'
+            />
+          </div>
           <div class='row' />
           <div class='jumbotron'>
             <div class='row'>

@@ -113,6 +113,7 @@ export default class Dashboard extends Component {
                   <div class='row'>
                     <div class='col-6 colorRed'>Expenses</div>
                     <div class='col-6 colorRed'>
+                      ${' '}
                       {this.calculateTotalExp()
                         .toFixed(2)
                         .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
@@ -134,7 +135,12 @@ export default class Dashboard extends Component {
                 <div className='form-group'>
                   <div class='row'>
                     <div class='col-6 colorPur'>In General account</div>
-                    <div class='col-6 colorPur'>$5,000.00</div>
+                    <div class='col-6 colorPur'>
+                      ${' '}
+                      {(this.calculateTotalInc() - this.calculateTotalExp())
+                        .toFixed(2)
+                        .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
+                    </div>
                   </div>
                 </div>
               </div>

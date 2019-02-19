@@ -114,26 +114,18 @@ class Expenses extends Component {
       .then(response => response.json())
       .then(data => {
         console.log(data)
-        if (typeof data.token !== 'undefined') {
-          localStorage.setItem('token', data.token)
-          const url = window.decodeURIComponent(this.props.location.search)
-          // console.log(url)
-          if (url !== '') {
-            this.props.history.push('/' + url.split('/')[1] || '/')
-          } else {
-            this.props.history.push('/')
+
+        this.setState({
+          error: {
+            status: true,
+            message: data.message
           }
-        } else {
-          this.setState({
-            error: {
-              status: true,
-              message: data.message
-            }
-          })
-        }
+        })
       })
       .catch(e => alert(e))
-    this.props.history.push('/expenses')
+
+    alert('You have successfully registered')
+    this.props.history.push('/listexpenses')
   }
 
   render () {

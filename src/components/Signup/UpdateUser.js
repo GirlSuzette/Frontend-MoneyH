@@ -60,10 +60,10 @@ class UpdateUser extends React.Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        fullName: this.state.fullName,
-        email: this.state.email,
-        password: this.state.password,
-        phoneNumber: this.state.phoneNumber
+        fullName: e.target.fullName.value,
+        email: e.target.email.value,
+        password: e.target.password.value,
+        phoneNumber: e.target.phoneNumber.value
       })
     })
       .then(response => response.json())
@@ -113,7 +113,6 @@ class UpdateUser extends React.Component {
                         type='text'
                         label='Name'
                         fullWidth
-                        value={this.state.fullName}
                         // onChange={this.handleChange}
                       />
                     </div>
@@ -123,7 +122,6 @@ class UpdateUser extends React.Component {
                         name='email'
                         type='email'
                         label='Email'
-                        value={this.state.email}
                         fullWidth
                         // onChange={this.handleChange}
                       />
@@ -131,11 +129,11 @@ class UpdateUser extends React.Component {
                     <div className='form-group'>
                       <TextField
                         required
-                        name='number'
+                        name='phoneNumber'
                         type='number'
                         label='Phome Number'
-                        value={this.state.phoneNumber}
                         fullWidth
+                        maxlength='10'
                         // onChange={this.handleChange}
                       />
                     </div>
@@ -145,9 +143,7 @@ class UpdateUser extends React.Component {
                         name='password'
                         type='password'
                         label='Password'
-                        value={this.state.password}
                         fullWidth
-
                         // onChange={this.handleChange}
                       />
                     </div>

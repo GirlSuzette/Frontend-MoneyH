@@ -106,26 +106,17 @@ class Incomes extends Component {
     })
       .then(response => response.json())
       .then(data => {
-        if (typeof data.token !== 'undefined') {
-          localStorage.setItem('token', data.token)
-          const url = window.decodeURIComponent(this.props.location.search)
-          console.log(url)
-          if (url !== '') {
-            this.props.history.push('/' + url.split('/')[1] || '/')
-          } else {
-            this.props.history.push('/login')
+        this.setState({
+          error: {
+            status: true,
+            message: data.message
           }
-        } else {
-          this.setState({
-            error: {
-              status: true,
-              message: data.message
-            }
-          })
-        }
+        })
       })
       .catch(e => alert(e))
-    this.props.history.push('/incomes')
+
+    alert('You have successfully registered')
+    this.props.history.push('/listincomes')
   }
   render () {
     const { classes } = this.props
@@ -145,7 +136,7 @@ class Incomes extends Component {
                         .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
                     </div>
                   </div>
-                  <Link className='linkHistory' to='/listexpenses'>
+                  <Link className='linkHistory' to='/listincomes'>
                     History
                   </Link>
                   <div className='form-group'>
@@ -189,8 +180,8 @@ class Incomes extends Component {
                         className='browser-default custom-select'
                       >
                         <option value='1'>Choose your type</option>
-                        <option value='type'>Fixed</option>
-                        <option value='type'>Variable</option>
+                        <option value='Fixed'>Fixed</option>
+                        <option value='Variable'>Variable</option>
                       </select>
                     </div>
                   </div>

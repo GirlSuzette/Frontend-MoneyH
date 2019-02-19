@@ -3,6 +3,7 @@ import './expenses.css'
 import { Link } from 'react-router-dom'
 import AddCircle from '@material-ui/icons/AddCircle'
 import Moment from 'react-moment'
+import Button from '@material-ui/core/Button'
 
 export default class ListExpenses extends Component {
   constructor () {
@@ -10,12 +11,14 @@ export default class ListExpenses extends Component {
     this.state = {
       users: [],
       local: '',
-      expenses: []
+      expenses: [],
+      expensesMirror: [],
+      expensedata: []
     }
   }
 
   calculateTotal () {
-    const prices = this.state.expenses.map(p => p.quantity)
+    const prices = this.state.expensedata.map(p => p.quantity)
     return prices.reduce((a, b) => a + b, 0)
   }
 
@@ -59,17 +62,47 @@ export default class ListExpenses extends Component {
       .then(data => {
         console.log(data)
         this.setState({
-          expenses: data.data
+          expensedata: data.data,
+          expenses: data.data,
+          expensesMirror: data.data
         })
       })
       .catch(e => alert(e))
   }
 
+  searchByName = e => {
+    let expenses = [...this.state.expenses]
+    var query = e.target.value
+    if (query !== '') {
+      var coincidences = expenses.filter(
+        expense =>
+          expense.concept.toLowerCase().indexOf(query.toLowerCase()) !== -1
+      )
+      this.setState({
+        expenses: coincidences
+      })
+    } else {
+      this.setState({
+        expenses: this.state.expensesMirror
+      })
+    }
+  }
   render () {
     return (
       <React.Fragment>
         <div class='container marginlist'>
           <div class='row' />
+          <div className='flexBus'>
+            <Button type='submit' value='Expenses' variant='contained'>
+              Update
+            </Button>
+            <input
+              onChange={this.searchByName}
+              className='inputSearch'
+              type='text'
+              placeholder='Search'
+            />
+          </div>
           <div class='jumbotron'>
             <div class='row'>
               <div class='col-md-6 text-center'>

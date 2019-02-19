@@ -18,6 +18,7 @@ import ListExpenses from './components/Expenses/ListExpenses'
 import ListSavings from './components/Saving/ListSaving'
 import MenuApp from './components/MenuMovil/MenuMovil'
 import Reminder from './components/Reminder/Reminder'
+// import UpdateExpenses from './components/Expenses/UpdateExpenses'
 
 import './App.css'
 
@@ -39,6 +40,11 @@ class App extends Component {
           <PrivateRoute path='/listexpenses' exact component={ListExpenses} />
           <PrivateRoute path='/listsavings' exact component={ListSavings} />
           <PrivateRoute path='/reminders' exact component={Reminder} />
+          {/* <PrivateRoute
+            path='/updateexpenses'
+            exact
+            component={UpdateExpenses}
+          /> */}
         </Switch>
         <Footer />
         <MenuApp />

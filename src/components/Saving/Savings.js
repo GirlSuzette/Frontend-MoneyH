@@ -84,20 +84,15 @@ class Savings extends Component {
     })
       .then(response => response.json())
       .then(data => {
-        if (typeof data.token !== 'undefined') {
-          localStorage.setItem('token', data.token)
-          const url = window.decodeURIComponent(this.props.location.search)
-          this.props.history.push('/' + url.split('/')[1] || '/')
-        } else {
-          this.setState({
-            error: {
-              status: true,
-              message: data.message
-            }
-          })
-        }
+        this.setState({
+          error: {
+            status: true,
+            message: data.message
+          }
+        })
       })
-    this.props.history.push('/savings')
+    alert('You have successfully registered')
+    this.props.history.push('/listsavings')
   }
 
   render () {
