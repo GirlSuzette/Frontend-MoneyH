@@ -121,18 +121,7 @@ export default class Dashboard extends Component {
                   </div>
                 </div>
               </div>
-              <div class='col-md-5'>
-                <div className='form-group'>
-                  <div class='row'>
-                    <div class='col-6 colorBlue'>Saving Goal</div>
-                    <div class='col-6 colorBlue'>
-                      $10,0000.00/
-                      <br />
-                      $45,000.00
-                    </div>
-                  </div>
-                </div>
-                <div className='form-group'>
+              <div className='form-group'>
                   <div class='row'>
                     <div class='col-6 colorPur'>In General account</div>
                     <div class='col-6 colorPur'>
@@ -143,6 +132,17 @@ export default class Dashboard extends Component {
                     </div>
                   </div>
                 </div>
+              <div class='col-md-5'>
+                {/* <div className='form-group'>
+                  <div class='row'>
+                    <div class='col-6 colorBlue'>Saving Goal</div>
+                    <div class='col-6 colorBlue'>
+                      $10,0000.00/
+                      <br />
+                      $45,000.00
+                    </div>
+                  </div>
+                </div> */}
               </div>
             </div>
           </div>
