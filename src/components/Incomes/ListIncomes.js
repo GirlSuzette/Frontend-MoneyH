@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import AddCircle from '@material-ui/icons/AddCircle'
 import Moment from 'react-moment'
 import Button from '@material-ui/core/Button'
+import getMonth from '../../utils/Month'
 
 export default class ListIncomes extends Component {
   constructor () {
@@ -87,6 +88,8 @@ export default class ListIncomes extends Component {
   }
 
   render () {
+    const year = new Date().getFullYear()
+    const DateYM = getMonth() + ' ' + year
     return (
       <React.Fragment>
         <div class='container marginlist'>
@@ -109,7 +112,7 @@ export default class ListIncomes extends Component {
                 <div className='form-group'>
                   <div>
                     <div class='col-12 colorGreen '>
-                      Income ${' '}
+                      Income {DateYM} ${' '}
                       {this.calculateTotal()
                         .toFixed(2)
                         .replace(/\d(?=(\d{3})+\.)/g, '$&,')}

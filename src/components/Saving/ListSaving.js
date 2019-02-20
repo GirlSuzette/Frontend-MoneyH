@@ -3,6 +3,7 @@ import './Savings.css'
 import Moment from 'react-moment'
 import AddCircle from '@material-ui/icons/AddCircle'
 import { Link } from 'react-router-dom'
+import getMonth from '../../utils/Month'
 
 export default class ListSavings extends Component {
   constructor () {
@@ -61,6 +62,8 @@ export default class ListSavings extends Component {
   }
 
   render () {
+    const year = new Date().getFullYear()
+    const DateYM = getMonth() + ' ' + year
     return (
       <React.Fragment>
         <div class='container marginlist'>
@@ -71,7 +74,7 @@ export default class ListSavings extends Component {
                 <div className='form-group'>
                   <div class='row'>
                     <div class='col-12 colorBlue '>
-                      Saving goals Car hitch $ 75,342.43/100,000.00
+                      Saving goals {DateYM} Car hitch $ 75,342.43/100,000.00
                     </div>
                   </div>
                 </div>
