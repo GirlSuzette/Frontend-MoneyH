@@ -38,28 +38,28 @@ class Menu extends React.Component {
     }
   }
 
-  componentDidMount () {
-    fetch('https://cryptic-retreat-15738.herokuapp.com/api/v1/users')
-      .then(response => response.json())
-      .then(data => {
-        // console.log(data)
-        this.setState({
-          users: data.data
-        })
+  // componentDidMount () {
+  //   fetch('https://cryptic-retreat-15738.herokuapp.com/api/v1/users')
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       // console.log(data)
+  //       this.setState({
+  //         users: data.data
+  //       })
 
-        const token = localStorage.getItem('token')
-        var base64Url = token.split('.')[1]
-        var base64 = base64Url.replace('-', '+').replace('_', '/')
-        const t = JSON.parse(window.atob(base64))
-        // console.log(t.email)
-        const currentUser = data.data.filter(user => {
-          if (user.email === t.email) {
-            this.setState({ user: user, fullName: user.fullName })
-            return user
-          }
-        })
-      })
-  }
+  //       const token = localStorage.getItem('token')
+  //       var base64Url = token.split('.')[1]
+  //       var base64 = base64Url.replace('-', '+').replace('_', '/')
+  //       const t = JSON.parse(window.atob(base64))
+  //       // console.log(t.email)
+  //       const currentUser = data.data.filter(user => {
+  //         if (user.email === t.email) {
+  //           this.setState({ user: user, fullName: user.fullName })
+  //           return user
+  //         }
+  //       })
+  //     })
+  // }
 
   toggleDrawer = () => {
     this.setState({
@@ -109,7 +109,7 @@ class Menu extends React.Component {
           {isLoggedIn() && (
             <div className='MenuFlex'>
               <span className='logoup MenuFlex' onClick={this.handleLogout}>
-                <div className='titleMenu'>Hello {this.state.fullName}</div>
+                <div className='titleMenu'>Welcome {this.state.fullName}</div>
                 <div>
                   <i className='material-icons'>exit_to_app</i>
                 </div>

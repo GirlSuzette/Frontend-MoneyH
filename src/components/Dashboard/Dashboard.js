@@ -114,7 +114,7 @@ export default class Dashboard extends Component {
       const newdate = exp.date
       const d = newdate.replace(/T/g, '-')
       const y = d.split('-')
-      const newData = exp.concept + ' ' + y[0] + '-' + y[2]
+      const newData = y[0] + '-' + y[2]
       // console.log(x)
       return newData
     })

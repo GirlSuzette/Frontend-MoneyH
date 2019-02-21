@@ -15,6 +15,11 @@ export default class ListSavings extends Component {
     }
   }
 
+  calculateTotal () {
+    const prices = this.state.savings.map(p => p.quantity)
+    return prices.reduce((a, b) => a + b, 0)
+  }
+
   componentDidMount () {
     fetch('https://cryptic-retreat-15738.herokuapp.com/api/v1/users')
       .then(response => response.json())
@@ -74,7 +79,10 @@ export default class ListSavings extends Component {
                 <div className='form-group'>
                   <div class='row'>
                     <div class='col-12 colorBlue '>
-                      Saving goals {DateYM} Car hitch $ 75,342.43/100,000.00
+                      Saving goals {DateYM}{' '}
+                     $ {this.calculateTotal()
+                        .toFixed(2)
+                        .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
                     </div>
                   </div>
                 </div>

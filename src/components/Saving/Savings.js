@@ -10,6 +10,7 @@ import { withStyles } from '@material-ui/core/styles'
 import DateFnsUtils from '@date-io/date-fns'
 import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers'
 import { Link } from 'react-router-dom'
+const Nexmo = require('nexmo')
 
 const styles = {
   grid: {
@@ -29,6 +30,19 @@ class Savings extends Component {
       },
       selectedDate: new Date()
     }
+  }
+
+  send = () => {
+    const nexmo = new Nexmo({
+      apiKey: '00eabd5f',
+      apiSecret: 'CpLhv8kQK6zDqg8M'
+    })
+
+    const from = 'Nexmo'
+    const to = '522282220235'
+    const text = `Add Incomes`
+
+    nexmo.message.sendSms(from, to, text)
   }
 
   componentDidMount () {
@@ -93,6 +107,7 @@ class Savings extends Component {
       })
     alert('You have successfully registered')
     this.props.history.push('/listsavings')
+    this.send()
   }
 
   render () {

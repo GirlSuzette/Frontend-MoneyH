@@ -94,6 +94,7 @@ class UpdateUser extends React.Component {
         }
       })
       .catch(e => alert(e))
+    this.props.history.push('/update')
   }
   render () {
     return (
