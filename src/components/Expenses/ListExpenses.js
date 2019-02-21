@@ -96,9 +96,6 @@ export default class ListExpenses extends Component {
         <div class='container marginlist'>
           <div class='row' />
           <div className='flexBus'>
-            <Button type='submit' value='Expenses' variant='contained'>
-              Update
-            </Button>
             <input
               onChange={this.searchByName}
               className='inputSearch'

@@ -11,6 +11,7 @@ import DateFnsUtils from '@date-io/date-fns'
 import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers'
 import { Link } from 'react-router-dom'
 import AddCircle from '@material-ui/icons/AddCircle'
+const Nexmo = require('nexmo')
 
 const styles = {
   grid: {
@@ -29,8 +30,24 @@ class Expenses extends Component {
         message: ''
       },
       selectedDate: new Date(),
-      expenses: []
+      expenses: [],
+      expensesBal: null,
+      incomesBal: null,
+      balance: null
     }
+  }
+
+  send = () => {
+    const nexmo = new Nexmo({
+      apiKey: '00eabd5f',
+      apiSecret: 'CpLhv8kQK6zDqg8M'
+    })
+
+    const from = 'Nexmo'
+    const to = '522282220235'
+    const text = `Add Expenses`
+
+    nexmo.message.sendSms(from, to, text)
   }
 
   calculateTotal () {
@@ -60,6 +77,7 @@ class Expenses extends Component {
         })
         // console.log(currentUser)
         this.getExpenses(currentUser)
+        this.getBalance(currentUser)
       })
   }
 
@@ -97,39 +115,66 @@ class Expenses extends Component {
     e.preventDefault()
 
     const API_URL = 'https://cryptic-retreat-15738.herokuapp.com/api/v1/'
+    if (this.state.balance > e.target.quantity.value) {
+      fetch(`${API_URL}/users/${this.state.user._id}/expenses`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          concept: e.target.concept.value,
+          quantity: e.target.quantity.value,
+          date: this.state.selectedDate,
+          type: e.target.type.value,
+          status: e.target.status.value
+        })
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data)
 
-    fetch(`${API_URL}/users/${this.state.user._id}/expenses`, {
-      method: 'POST',
+          this.setState({
+            error: {
+              status: true,
+              message: data.message
+            }
+          })
+        })
+        .catch(e => alert(e))
+      this.send()
+      alert('You have successfully registered')
+      this.props.history.push('/listexpenses')
+    } else {
+      alert('Your incomes cant more than expenses ')
+    }
+  }
+
+  getBalance = currentUser => {
+    // console.log(currentUser)
+    const userId = currentUser[0]._id
+    // console.log(userId)
+    const API_URL = 'https://cryptic-retreat-15738.herokuapp.com/api/v1'
+    fetch(`${API_URL}/users/${userId}/balances`, {
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        concept: e.target.concept.value,
-        quantity: e.target.quantity.value,
-        date: this.state.selectedDate,
-        type: e.target.type.value,
-        status: e.target.status.value
-      })
+      }
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data)
-
         this.setState({
-          error: {
-            status: true,
-            message: data.message
-          }
+          incomesBal: data.data[0].incomes,
+          expensesBal: data.data[0].expenses,
+          balance: data.data[0].balance
         })
       })
       .catch(e => alert(e))
-
-    alert('You have successfully registered')
-    this.props.history.push('/listexpenses')
   }
 
   render () {
     const { classes } = this.props
+    console.log(this.state.expensesBal)
+    console.log(this.state.incomesBal)
     // console.log(this.state)
     return (
       <div className='expensesContainer'>
@@ -184,7 +229,7 @@ class Expenses extends Component {
                       </Grid>
                     </MuiPickersUtilsProvider>
                   </div>
-                  <div className='form-group'>
+                  <div className='sm-6'>
                     <div>
                       <select
                         name='type'
@@ -196,7 +241,7 @@ class Expenses extends Component {
                       </select>
                     </div>
                   </div>
-                  <div className='form-group'>
+                  <div className='sm-6'>
                     <div>
                       <select
                         name='status'

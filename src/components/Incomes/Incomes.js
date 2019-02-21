@@ -10,6 +10,7 @@ import { withStyles } from '@material-ui/core/styles'
 import DateFnsUtils from '@date-io/date-fns'
 import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers'
 import { Link } from 'react-router-dom'
+const Nexmo = require('nexmo')
 
 const styles = {
   grid: {
@@ -37,6 +38,18 @@ class Incomes extends Component {
     return prices.reduce((a, b) => a + b, 0)
   }
 
+  send = () => {
+    const nexmo = new Nexmo({
+      apiKey: '00eabd5f',
+      apiSecret: 'CpLhv8kQK6zDqg8M'
+    })
+
+    const from = 'Nexmo'
+    const to = '522282220235'
+    const text = `Add Incomes`
+
+    nexmo.message.sendSms(from, to, text)
+  }
   componentDidMount () {
     fetch('https://cryptic-retreat-15738.herokuapp.com/api/v1/users')
       .then(response => response.json())
@@ -114,7 +127,7 @@ class Incomes extends Component {
         })
       })
       .catch(e => alert(e))
-
+    this.send()
     alert('You have successfully registered')
     this.props.history.push('/listincomes')
   }

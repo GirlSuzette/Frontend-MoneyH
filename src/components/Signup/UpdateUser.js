@@ -16,15 +16,13 @@ class UpdateUser extends React.Component {
     password: '',
     phoneNumber: ''
   }
-  handleLogIn = () => {
-    const { history } = this.props
-
-    localStorage.removeItem('token')
-    history.push('/')
-  }
 
   componentDidMount () {
-    fetch('https://cryptic-retreat-15738.herokuapp.com/api/v1/users')
+    fetch('https://cryptic-retreat-15738.herokuapp.com/api/v1/users', {
+      headers: {
+        Authorization: `barear ${localStorage.getItem('token')}`
+      }
+    })
       .then(response => response.json())
       .then(data => {
         this.setState({
@@ -38,21 +36,30 @@ class UpdateUser extends React.Component {
         // console.log(t.email)
         const currentUser = data.data.filter(user => {
           if (user.email === t.email) {
-            this.setState({ user: user })
+            this.setState({
+              user: user,
+              fullName: user.fullName,
+              email: user.email,
+              phoneNumber: user.phoneNumber
+            })
             return user
           }
         })
         // console.log(currentUser)
-        const id = currentUser.map(us => {
-          return <input name='id' type='hidden' value={us._id} />
-        })
-        return id
+
+        return currentUser
       })
   }
+
+  onChangeInput = e => this.setState({ [e.target.name]: [e.target.value] })
+
   onSubmit = e => {
     e.preventDefault()
 
-    const API_URL = 'https://cryptic-retreat-15738.herokuapp.com/api/v1/'
+    const API_URL = `https://cryptic-retreat-15738.herokuapp.com/api/v1/`
+
+    // const API_URL = 'http://localhost:3000/api/v1'
+    // // console.log(API_URL)
 
     fetch(`${API_URL}/users/${this.state.user._id}`, {
       method: 'PUT',
@@ -60,21 +67,14 @@ class UpdateUser extends React.Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        fullName: e.target.fullName.value,
-        email: e.target.email.value,
-        password: e.target.password.value,
-        phoneNumber: e.target.phoneNumber.value
+        fullName: this.state.fullName[0],
+        email: this.state.email,
+        password: this.state.password[0],
+        phoneNumber: this.state.phoneNumber
       })
     })
       .then(response => response.json())
       .then(data => {
-        this.setState({
-          fullName: data.data.fullName,
-          email: data.data.email,
-          password: data.data.password,
-          phoneNumber: data.data.phoneNumber
-        })
-
         if (typeof data.token !== 'undefined') {
           localStorage.setItem('token', data.token)
           const url = window.decodeURIComponent(this.props.location.search)
@@ -113,7 +113,8 @@ class UpdateUser extends React.Component {
                         type='text'
                         label='Name'
                         fullWidth
-                        // onChange={this.handleChange}
+                        value={this.state.fullName}
+                        onChange={this.onChangeInput}
                       />
                     </div>
                     <div className='form-group'>
@@ -123,7 +124,7 @@ class UpdateUser extends React.Component {
                         type='email'
                         label='Email'
                         fullWidth
-                        // onChange={this.handleChange}
+                        value={this.state.email}
                       />
                     </div>
                     <div className='form-group'>
@@ -134,7 +135,13 @@ class UpdateUser extends React.Component {
                         label='Phome Number'
                         fullWidth
                         maxlength='10'
-                        // onChange={this.handleChange}
+                        onInput={e => {
+                          e.target.value = Math.max(0, parseInt(e.target.value))
+                            .toString()
+                            .slice(0, 10)
+                        }}
+                        value={this.state.phoneNumber}
+                        onChange={this.onChangeInput}
                       />
                     </div>
                     <div className='form-group'>
@@ -144,7 +151,8 @@ class UpdateUser extends React.Component {
                         type='password'
                         label='Password'
                         fullWidth
-                        // onChange={this.handleChange}
+                        value={this.state.password}
+                        onChange={this.onChangeInput}
                       />
                     </div>
                     {this.state.error.status && (

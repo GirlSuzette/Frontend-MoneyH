@@ -16,7 +16,7 @@ const getMonth = () => {
     'December'
   ]
 
-  return month[date.getDay() - 1]
+  return month[date.getDay() - 2]
 }
 
 module.exports = getMonth
