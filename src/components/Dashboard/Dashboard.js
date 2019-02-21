@@ -120,76 +120,31 @@ export default class Dashboard extends Component {
     })
     return getData
   }
-  onSubmit = e => {
-    e.preventDefault()
-    // console.log(e.target.month.value)
+  // onSubmit = e => {
+  //   e.preventDefault()
+  //   // console.log(e.target.month.value)
 
-    const x = this.state.expensesData.filter(exp => {
-      if (this.getMonth(exp.date) === e.target.month.value) {
-        return exp
-      }
-    })
-    this.setState({
-      expensesData: x
-    })
-    console.log(this.state.expensesData)
-  }
+  //   const x = this.state.expensesData.filter(exp => {
+  //     if (this.getMonth(exp.date) === e.target.month.value) {
+  //       return exp
+  //     }
+  //   })
+  //   this.setState({
+  //     expensesData: x
+  //   })
+  //   console.log(this.state.expensesData)
+  // }
 
   render () {
     const { incomes, expenses, balance, period } = this.state
     console.log(this.state.expensesData)
-    const data = {
-      labels: [...this.getMonth()],
-      datasets: [
-        {
-          label: '# of Votes',
-          data: [1],
-          backgroundColor: [
-            'rgba(255, 991, 132, 0.2)',
-            'rgba(54, 466, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
-          ],
-          borderColor: [
-            'rgba(255,99,132,1)',
-            'rgba(255, 9, 131, 1)',
-            'rgba(255, 2, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
-          ],
-          borderWidth: 1
-        }
-      ]
-    }
-
-    const options = {
-      duration: 7000,
-      title: {
-        display: true,
-        text: 'Expenses',
-        fontSize: 20
-      },
-      maintainAspectRatio: false,
-      scales: {
-        yAxes: [
-          {
-            ticks: {
-              beginAtZero: true
-            }
-          }
-        ]
-      }
-    }
 
     return (
       <React.Fragment>
         <div className='centerSelect'>
           <div class='row'>
             <div>
-              <form onSubmit={this.onSubmit}>
+              {/* <form onSubmit={this.onSubmit}>
                 <div className='form-group'>
                   <div class='col-12'>
                     <select
@@ -208,7 +163,7 @@ export default class Dashboard extends Component {
                     search
                   </Button>
                 </div>
-              </form>
+              </form> */}
               <div />
             </div>
           </div>
@@ -245,12 +200,12 @@ export default class Dashboard extends Component {
             <div class='row'>
               <div class='col-md-6'>
                 <div>
-                  <Bar data={data} width={100} height={450} options={options} />
+                  <DashIncome />
                 </div>
               </div>
               <div class='col-md-6'>
                 <div>
-                  <DashIncome />
+                  <DashExpense />
                 </div>
               </div>
               <div class='col-md-6 colorBlue'>

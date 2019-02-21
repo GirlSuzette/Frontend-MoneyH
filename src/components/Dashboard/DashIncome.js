@@ -87,7 +87,7 @@ export default class DashIncome extends Component {
           label: '# of Votes',
           data: [...this.getInc()],
           backgroundColor: [
-            'rgba(255, 991, 132, 0.2)',
+            'rgba(2, 991, 132, 0.2)',
             'rgba(54, 466, 235, 0.2)',
             'rgba(255, 206, 86, 0.2)',
             'rgba(75, 192, 192, 0.2)',
@@ -108,7 +108,7 @@ export default class DashIncome extends Component {
     }
 
     const options = {
-      duration: 7000,
+      duration: 12000,
       title: {
         display: true,
         text: 'Incomes',

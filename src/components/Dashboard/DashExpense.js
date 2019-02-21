@@ -106,7 +106,7 @@ export default class DashIncome extends Component {
     }
 
     const options = {
-      duration: 7000,
+      duration: 12000,
       title: {
         display: true,
         text: 'Expenses',
