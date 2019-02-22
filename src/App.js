@@ -40,11 +40,7 @@ class App extends Component {
           <PrivateRoute path='/listexpenses' exact component={ListExpenses} />
           <PrivateRoute path='/listsavings' exact component={ListSavings} />
           <PrivateRoute path='/reminders' exact component={Reminder} />
-          {/* <PrivateRoute
-            path='/updateexpenses'
-            exact
-            component={UpdateExpenses}
-          /> */}
+       
         </Switch>
         <Footer />
         <MenuApp />
