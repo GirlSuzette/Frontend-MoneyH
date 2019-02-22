@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
 import './dashboard.css'
-import Moment from 'react-moment'
-import Button from '@material-ui/core/Button'
 import DashIncome from './DashIncome'
 import DashExpense from './DashExpense'
-import DashSaving from './DashSaving'
-import { getMonth } from 'date-fns/esm/fp'
 import { Bar } from 'react-chartjs-2'
 
 export default class Dashboard extends Component {
@@ -120,159 +116,102 @@ export default class Dashboard extends Component {
     })
     return getData
   }
-  // onSubmit = e => {
-  //   e.preventDefault()
-  //   // console.log(e.target.month.value)
-
-  //   const x = this.state.expensesData.filter(exp => {
-  //     if (this.getMonth(exp.date) === e.target.month.value) {
-  //       return exp
-  //     }
-  //   })
-  //   this.setState({
-  //     expensesData: x
-  //   })
-  //   console.log(this.state.expensesData)
-  // }
 
   render () {
     const { incomes, expenses, balance, period } = this.state
     console.log(this.state.expensesData)
+    const data = {
+      labels: ['Incomes 02-2019', 'Expenses 02-2019', 'Balance 02-2019'],
+      datasets: [
+        {
+          label: '# Balance',
+          data: [incomes, expenses, balance],
+          backgroundColor: [
+            'rgba(74, 199, 32, 0.3)',
+            'rgba(255, 2, 2, 0.3)',
+            'rgba(153, 102, 225, .4)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255,99,132,1)',
+            'rgba(255, 9, 131, 1)',
+            'rgba(255, 2, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }
+      ]
+    }
+
+    const options = {
+      duration: 12000,
+      title: {
+        display: true,
+        text: 'Balance',
+        fontSize: 20
+      },
+      maintainAspectRatio: false,
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true
+            }
+          }
+        ]
+      }
+    }
 
     return (
       <React.Fragment>
-        <div className='centerSelect'>
+        <div class='container marginDash'>
+          <div class='row' />
+          <h5 className='textDash'>General information {period} </h5>
+          <div class='jumbotron'>
+            <div class='row centerBal '>
+              <div className='form-group'>
+                <div class='row'>
+                  <div class='col-8 colorGreen'>Income</div>
+                  <div class='col-8 colorGreen'>${incomes}</div>
+                </div>
+              </div>
+              <div className='form-group'>
+                <div class='row'>
+                  <div class='col-8 colorRed'>Expenses</div>
+                  <div class='col-8 colorRed'>$ {expenses}</div>
+                </div>
+              </div>
+
+              <div className='form-group'>
+                <div class='row'>
+                  <div class='col-8 colorPur'>Balance</div>
+                  <div class='col-8 colorPur'>$ {balance}</div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class='row'>
-            <div>
-              {/* <form onSubmit={this.onSubmit}>
-                <div className='form-group'>
-                  <div class='col-12'>
-                    <select
-                      name='month'
-                      className='browser-default custom-select selectMonth'
-                    >
-                      <option value=''>Choose your Month</option>
-                      <option value='01'>January</option>
-                      <option value='02'>February</option>
-                      <option value='03'>Marth</option>
-                    </select>
-                  </div>
-                </div>
-                <div className='form-group col-4'>
-                  <Button type='submit' variant='contained'>
-                    search
-                  </Button>
-                </div>
-              </form> */}
-              <div />
+            <div class='col-md-12'>
+              <div>
+                <Bar data={data} width={100} height={450} options={options} />
+              </div>
+            </div>
+            <div class='col-md-6'>
+              <div>
+                <DashIncome />
+              </div>
+            </div>
+            <div class='col-md-6 '>
+              <div>
+                <DashExpense />
+              </div>
             </div>
           </div>
         </div>
-
-        {this.state.showAño && (
-          <div class='container marginDash'>
-            <div class='row' />
-            <h5 className='textDash'>General information {period} </h5>
-            <div class='jumbotron'>
-              <div class='row'>
-                <div class='col-md-6'>
-                  <div className='form-group'>
-                    <div class='row'>
-                      <div class='col-6 colorGreen'>Incomes</div>
-                      <div class='col-6 colorGreen'>${incomes}</div>
-                    </div>
-                  </div>
-                  <div className='form-group'>
-                    <div class='row'>
-                      <div class='col-6 colorRed'>Expenses</div>
-                      <div class='col-6 colorRed'>$ {expenses}</div>
-                    </div>
-                  </div>
-                </div>
-                <div className='form-group'>
-                  <div class='row'>
-                    <div class='col-6 colorPur'>Balance</div>
-                    <div class='col-6 colorPur'>$ {balance}</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class='row'>
-              <div class='col-md-6'>
-                <div>
-                  <DashIncome />
-                </div>
-              </div>
-              <div class='col-md-6'>
-                <div>
-                  <DashExpense />
-                </div>
-              </div>
-              <div class='col-md-6 colorBlue'>
-                <div>
-                  <DashSaving />
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-        {this.state.showMes && (
-          <div class='container marginDash'>
-            <div class='row' />
-            <h5 className='textDash'>General information {period} </h5>
-            <div class='jumbotron'>
-              <div class='row'>
-                <div class='col-md-6'>
-                  <div className='form-group'>
-                    <div class='row'>
-                      <div class='col-6 colorGreen'>Incomes</div>
-                      <div class='col-6 colorGreen'>${incomes}</div>
-                    </div>
-                  </div>
-                  <div className='form-group'>
-                    <div class='row'>
-                      <div class='col-6 colorRed'>Expenses</div>
-                      <div class='col-6 colorRed'>$ {expenses}</div>
-                    </div>
-                  </div>
-                </div>
-                <div className='form-group'>
-                  <div class='row'>
-                    <div class='col-6 colorPur'>Balance</div>
-                    <div class='col-6 colorPur'>$ {balance}</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class='row'>
-              <table class='table'>
-                <thead class='thead-dark'>
-                  <tr>
-                    <th scope='col'>Concept</th>
-                    <th scope='col'>Quantity</th>
-                    <th scope='col'>Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {this.state.expensesData.map(expense => (
-                    <tr>
-                      <td>{expense.concept}</td>
-                      <td>
-                        {'$ ' +
-                          expense.quantity
-                            .toFixed(2)
-                            .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
-                      </td>
-                      <td>
-                        <Moment format='YYYY-MM-DD'>{expense.date}</Moment>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        )}
       </React.Fragment>
     )
   }

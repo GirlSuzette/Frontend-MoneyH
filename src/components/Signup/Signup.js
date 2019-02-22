@@ -2,17 +2,38 @@ import React from 'react'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import './signup.css'
+import swal from '@sweetalert/with-react'
 
 class Signup extends React.Component {
   state = {
     error: {
       status: false,
       message: ''
-    }
+    },
+    showChild: true
   }
-  handleLogIn = () => {
-    const { history } = this.props
-    history.push('/login')
+  succes = message => {
+    swal(
+      <div>
+        <h1>{message}</h1>
+      </div>
+    )
+  }
+
+  closeChild = () => {
+    this.setState({
+      showChild: false
+    })
+  }
+
+  redirect = () => {
+    const url = window.decodeURIComponent(this.props.location.search)
+    if (url !== '') {
+      this.props.history.push('/' + url.split('/')[1] || '/')
+    } else {
+      this.props.history.push('/login')
+    }
+    this.closeChild()
   }
 
   onSubmit = e => {
@@ -37,7 +58,7 @@ class Signup extends React.Component {
         if (typeof data.token !== 'undefined') {
           localStorage.setItem('token', data.token)
           const url = window.decodeURIComponent(this.props.location.search)
-          console.log(url)
+
           if (url !== '') {
             this.props.history.push('/' + url.split('/')[1] || '/')
           } else {
@@ -53,7 +74,7 @@ class Signup extends React.Component {
         }
       })
       .catch(e => alert(e))
-    this.props.history.push('/login')
+    alert('You have successfully registered')
   }
   render () {
     return (
@@ -111,16 +132,11 @@ class Signup extends React.Component {
                         // onChange={this.handleChange}
                       />
                     </div>
-                    {this.state.error.status && (
-                      <p>{this.state.error.message}</p>
+                    {this.state.error.status && this.state.showChild && (
+                      <p>{this.succes(this.state.error.message)}</p>
                     )}
                     <div class='form-group'>
-                      <Button
-                        type='submit'
-                        value='Login'
-                        variant='contained'
-                        onClick={this.handleLogout}
-                      >
+                      <Button type='submit' value='Login' variant='contained'>
                         Saved
                       </Button>
                     </div>

@@ -127,7 +127,7 @@ class Incomes extends Component {
         })
       })
       .catch(e => alert(e))
-    this.send()
+    // this.send()
     alert('You have successfully registered')
     this.props.history.push('/listincomes')
   }

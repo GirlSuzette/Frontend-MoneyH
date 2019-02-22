@@ -50,5 +50,14 @@
   display: flex;
 }
 
-.selectMonth {
+.centerBal {
+  text-align: center;
+  margin: 0 auto;
+  padding-left: 65px;
+}
+
+@media screen and (min-width: 1024px) {
+  .centerBal {
+    padding-left: 276px;
+  }
 }

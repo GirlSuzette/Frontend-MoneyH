@@ -140,7 +140,7 @@ class Menu extends React.Component {
               </ListItem>
               <ListItem button>
                 <Link className='side' to='/listincomes'>
-                  Incomes
+                  Income
                 </Link>
               </ListItem>
               <Divider />

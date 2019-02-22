@@ -3,7 +3,6 @@ import './Income.css'
 import { Link } from 'react-router-dom'
 import AddCircle from '@material-ui/icons/AddCircle'
 import Moment from 'react-moment'
-import Button from '@material-ui/core/Button'
 import getMonth from '../../utils/Month'
 
 export default class ListIncomes extends Component {

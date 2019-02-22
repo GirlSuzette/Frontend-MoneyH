@@ -84,9 +84,10 @@ export default class DashIncome extends Component {
       labels: [...this.getData()],
       datasets: [
         {
+          label: '# Income',
           data: [...this.getInc()],
           backgroundColor: [
-            'rgba(2, 991, 132, 0.2)',
+            'rgba(2, 991, 132, 0.5)',
             'rgba(54, 466, 235, 0.2)',
             'rgba(255, 206, 86, 0.2)',
             'rgba(75, 192, 192, 0.2)',
@@ -110,7 +111,7 @@ export default class DashIncome extends Component {
       duration: 12000,
       title: {
         display: true,
-        text: 'Incomes',
+        text: 'Income',
         fontSize: 20
       },
       maintainAspectRatio: false,

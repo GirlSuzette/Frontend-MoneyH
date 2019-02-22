@@ -141,7 +141,7 @@ class Expenses extends Component {
           })
         })
         .catch(e => alert(e))
-      this.send()
+      // this.send()
       alert('You have successfully registered')
       this.props.history.push('/listexpenses')
     } else {
@@ -249,7 +249,7 @@ class Expenses extends Component {
                       >
                         <option value='1'>Choose your status</option>
                         <option value='Paid out'>Paid out</option>
-                        <option value='By paid'>By paid</option>
+                        <option value='By paid'>to by paid</option>
                       </select>
                     </div>
                   </div>
