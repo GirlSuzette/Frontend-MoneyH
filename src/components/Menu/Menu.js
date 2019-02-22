@@ -46,7 +46,7 @@ class Menu extends React.Component {
   //       this.setState({
   //         users: data.data
   //       })
-
+  //
   //       const token = localStorage.getItem('token')
   //       var base64Url = token.split('.')[1]
   //       var base64 = base64Url.replace('-', '+').replace('_', '/')
@@ -60,7 +60,7 @@ class Menu extends React.Component {
   //       })
   //     })
   // }
-
+  // vv
   toggleDrawer = () => {
     this.setState({
       open: !this.state.open

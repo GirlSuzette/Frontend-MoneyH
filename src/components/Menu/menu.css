@@ -1,5 +1,5 @@
 .logoup {
-  color: azure;
+  color: cornsilk;
   font-size: 18px;
 }
 
@@ -31,14 +31,14 @@ img.NavMenu {
 
 @media screen and (min-width: 1024px) {
   .logoup {
-    color: azure;
+    color: cornsilk;
     font-size: 30px;
   }
   .titleMenu {
     font-size: 24px;
     display: flex;
     font-family: "Kaushan Script", cursive;
-    color: azure;
+    color: cornsilk;
     font-size: 26px;
     margin-left: 10px;
   }
