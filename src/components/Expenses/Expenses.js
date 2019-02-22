@@ -44,7 +44,7 @@ class Expenses extends Component {
     })
 
     const from = 'Nexmo'
-    const to = '522282220235'
+    const to = '525610591995'
     const text = `Add Expenses`
 
     nexmo.message.sendSms(from, to, text)
