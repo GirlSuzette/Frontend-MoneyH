@@ -2,7 +2,6 @@ import React from 'react'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import './signup.css'
-import swal from '@sweetalert/with-react'
 
 class Signup extends React.Component {
   state = {
@@ -11,13 +10,6 @@ class Signup extends React.Component {
       message: ''
     },
     showChild: true
-  }
-  succes = message => {
-    swal(
-      <div>
-        <h1>{message}</h1>
-      </div>
-    )
   }
 
   closeChild = () => {
