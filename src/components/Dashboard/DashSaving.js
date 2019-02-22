@@ -84,7 +84,6 @@ export default class DashSaving extends Component {
       labels: [...this.getData()],
       datasets: [
         {
-          label: '# of Votes',
           data: [...this.getSav()],
           backgroundColor: [
             'rgba(153, 1, 132, 0.2)',

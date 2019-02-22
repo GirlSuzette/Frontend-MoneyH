@@ -82,7 +82,6 @@ export default class DashIncome extends Component {
       labels: [...this.getData()],
       datasets: [
         {
-          label: '# of Votes',
           data: [...this.getExp()],
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',

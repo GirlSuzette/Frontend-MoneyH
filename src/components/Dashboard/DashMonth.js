@@ -72,7 +72,6 @@ export default class DashMonth extends Component {
       labels: [...getMonth(period)],
       datasets: [
         {
-          label: '# of Votes',
           data: [incomes],
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
