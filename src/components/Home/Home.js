@@ -13,21 +13,21 @@ import icon3 from '../../image/icon3.jpg'
 import './home.css'
 
 export default class Home extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.goNext = this.goNext.bind(this)
     this.goPrev = this.goPrev.bind(this)
     this.swiper = null
   }
 
-  goNext () {
+  goNext() {
     if (this.swiper) this.swiper.slideNext()
   }
 
-  goPrev () {
+  goPrev() {
     if (this.swiper) this.swiper.slidePrev()
   }
-  render () {
+  render() {
     const params = {
       spaceBetween: 100,
       centeredSlides: true,
@@ -73,8 +73,7 @@ export default class Home extends Component {
         <div className='jumbotron text-center'>
           <h1>Money Home</h1>
           <p>
-            It tells you what you've spent the money on and helps you optimize
-            your daily expenses.
+            Te ayuda a gestionar el presupuesto personal diario, relacionado con un presupuesto global.
           </p>
         </div>
         <div className='container'>
@@ -82,15 +81,14 @@ export default class Home extends Component {
             <div className='col-sm-6'>
               <div className='row textHome'>
                 <img src={imgSix} alt='Smiley face' /> <br />
-                <p>See whether you spend less than you earn </p>
+                <p>Optimiza los gastos mostrándote dónde gastas más de lo que crees.</p>
               </div>
             </div>
             <div className='col-sm-6'>
               <div className='row textHome'>
                 <img src={imgSeven} alt='Smiley face' />
                 <p>
-                  The app works intuitive, it makes it super easy to control
-                  your money. It helps me to develop healthy spending habits
+                  La aplicación funciona de forma intuitiva, hace que sea muy fácil de controlar tu dinero. Ayuda a desarrollar hábitos de consumo saludables.
                 </p>
               </div>
             </div>
@@ -104,8 +102,8 @@ export default class Home extends Component {
                 width='70'
                 height='70'
               />
-              <h3>Reminders</h3>
-              <p>Will notify you to pay the bill or not to exceed the budget</p>
+              <h3>Recordatorio</h3>
+              <p>de tus próximos pagos</p>
             </div>
             <div className='col3 text-center'>
               <img
@@ -115,9 +113,9 @@ export default class Home extends Component {
                 width='70'
                 height='70'
               />
-              <h3>Saving</h3>
+              <h3>Ahorra</h3>
               <p>
-                See where your money goes and where they come from every month
+                Te avisa cuando te estás acercando a los límites del presupuesto.
               </p>
             </div>
             <div className='col3 text-center'>
@@ -128,8 +126,8 @@ export default class Home extends Component {
                 width='70'
                 height='70'
               />
-              <h3>Graphic</h3>
-              <p>Analyze your fiance simple and easy to understand graphic</p>
+              <h3>Gráfica</h3>
+              <p>Analisis de finanzas con gráficas</p>
             </div>
           </div>
         </div>

@@ -25,9 +25,9 @@ export default class Footer extends Component {
 
           <div class='footer-left'>
             <p class='footer-links'>
-              <Link to='/'>Home</Link>·<Link to='#'>Income</Link>·
-              <Link to='/expenses'>Expenses</Link>·<Link to='#'>Saving</Link>·
-              <Link to='#'>Contact</Link>
+              <Link to='/'>Home</Link>·<Link to='#'>Ingresos</Link>·
+              <Link to='/expenses'>Gastos</Link>·<Link to='#'>Meta Ahorro</Link>·
+              <Link to='#'>Contact0</Link>
             </p>
 
             <p>Company Money Home &copy; 2019</p>

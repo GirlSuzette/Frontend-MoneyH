@@ -14,10 +14,10 @@ class UpdateUser extends React.Component {
     fullName: '',
     email: '',
     password: '',
-    phoneNumber: ''
+    phoneNumber: '',
   }
 
-  componentDidMount () {
+  componentDidMount() {
     fetch('https://cryptic-retreat-15738.herokuapp.com/api/v1/users', {
       headers: {
         Authorization: `barear ${localStorage.getItem('token')}`
@@ -58,8 +58,6 @@ class UpdateUser extends React.Component {
 
     const API_URL = `https://cryptic-retreat-15738.herokuapp.com/api/v1/`
 
-    // const API_URL = 'http://localhost:3000/api/v1'
-    // // console.log(API_URL)
 
     fetch(`${API_URL}/users/${this.state.user._id}`, {
       method: 'PUT',
@@ -75,35 +73,28 @@ class UpdateUser extends React.Component {
     })
       .then(response => response.json())
       .then(data => {
-        if (typeof data.token !== 'undefined') {
-          localStorage.setItem('token', data.token)
-          const url = window.decodeURIComponent(this.props.location.search)
-          console.log(url)
-          if (url !== '') {
-            this.props.history.push('/' + url.split('/')[1] || '/')
-          } else {
-            this.props.history.push('/login')
+        this.setState({
+          error: {
+            status: true,
+            message: data.message,
+            redirect: true
           }
-        } else {
-          this.setState({
-            error: {
-              status: true,
-              message: data.message
-            }
-          })
-        }
+        })
       })
       .catch(e => alert(e))
-    this.props.history.push('/update')
+
   }
-  render () {
+
+
+  render() {
+
     return (
       <React.Fragment>
         <div className='thislogin'>
           <div className='expensesContainer'>
             <div className='container ContLogin'>
               <div className='container' id='registration-form'>
-                <h1 className='centerTitle sizeTitle'>Update Account</h1>
+                <h1 className='centerTitle sizeTitle'>Actualizar Cuenta</h1>
                 <div className='imageUp' />
                 <div className='frm'>
                   <form onSubmit={this.onSubmit}>
@@ -112,7 +103,7 @@ class UpdateUser extends React.Component {
                         required
                         name='fullName'
                         type='text'
-                        label='Name'
+                        label='Nombre'
                         fullWidth
                         value={this.state.fullName}
                         onChange={this.onChangeInput}
@@ -133,7 +124,7 @@ class UpdateUser extends React.Component {
                         required
                         name='phoneNumber'
                         type='number'
-                        label='Phome Number'
+                        label='Número Celular'
                         fullWidth
                         maxlength='10'
                         onInput={e => {
@@ -150,7 +141,7 @@ class UpdateUser extends React.Component {
                         required
                         name='password'
                         type='password'
-                        label='Password'
+                        label='Contraseña'
                         fullWidth
                         value={this.state.password}
                         onChange={this.onChangeInput}
@@ -166,7 +157,7 @@ class UpdateUser extends React.Component {
                         variant='contained'
                         onClick={this.handleLogout}
                       >
-                        Saved
+                        Actualizar
                       </Button>
                     </div>
                   </form>

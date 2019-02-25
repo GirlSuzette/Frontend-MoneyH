@@ -16,21 +16,25 @@
 .colorGreen {
   color: rgb(26, 112, 26);
   font-size: 20px;
+  margin-bottom: 7px;
 }
 
 .colorRed {
   color: rgb(235, 4, 4);
   font-size: 20px;
+  margin-bottom: 7px;
 }
 
 .colorPur {
   color: rgb(90, 54, 158);
   font-size: 20px;
+  margin-bottom: 7px;
 }
 
 .colorBlue {
   color: rgb(48, 113, 211);
   font-size: 20px;
+  margin-bottom: 7px;
 }
 
 .textDash {

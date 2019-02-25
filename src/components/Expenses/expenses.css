@@ -87,6 +87,10 @@ svg.MuiSvgIcon-root-50 {
   padding: 10px;
 }
 
+.marginType{
+  margin-bottom:15px;
+}
+
 @media screen and (min-width: 1024px) {
   .btnAdd {
     margin-left: 20px;

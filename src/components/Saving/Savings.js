@@ -19,7 +19,7 @@ const styles = {
 }
 
 class Savings extends Component {
-  constructor () {
+  constructor() {
     super()
     this.state = {
       users: [],
@@ -45,7 +45,7 @@ class Savings extends Component {
     nexmo.message.sendSms(from, to, text)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     fetch('https://cryptic-retreat-15738.herokuapp.com/api/v1/users')
       .then(response => response.json())
       .then(data => {
@@ -110,7 +110,7 @@ class Savings extends Component {
     this.send()
   }
 
-  render () {
+  render() {
     const { classes } = this.props
 
     return (
@@ -121,17 +121,17 @@ class Savings extends Component {
               <Card picture={ExpensesImage}>
                 <form onSubmit={this.onSubmit}>
                   <div class='row'>
-                    <div class='col-4 colorBlue'>Saving Goals</div>
+                    <div class='col-8 colorBlue'>Metas de Ahorro</div>
                   </div>
                   <Link className='linkHistory' to='/listsavings'>
-                    History
+                  <i className="material-icons eyesIcon"><span>Ver Historial</span> remove_red_eye </i>
                   </Link>
                   <div className='form-group'>
                     <TextField
                       required
                       name='concept'
                       type='text'
-                      label='Concept'
+                      label='Concepto'
                       fullWidth
                     />
                   </div>
@@ -140,7 +140,7 @@ class Savings extends Component {
                       required
                       name='quantity'
                       type='decimal'
-                      label='Quantity'
+                      label='Cantidad'
                       fullWidth
                     />
                   </div>
@@ -150,10 +150,10 @@ class Savings extends Component {
                         name='savingFor'
                         className='browser-default custom-select'
                       >
-                        <option value='1'>Choose your Saving for</option>
-                        <option value='Weekly'>Weekly</option>
-                        <option value='Biweekly'>Biweekly</option>
-                        <option value='Monthly'>Monthly</option>
+                        <option value='1'>Elija su tipo de ahorro</option>
+                        <option value='Weekly'>Semanal</option>
+                        <option value='Biweekly'>Quincenal</option>
+                        <option value='Monthly'>Mensual</option>
                       </select>
                     </div>
                   </div>
@@ -166,7 +166,7 @@ class Savings extends Component {
                       >
                         <DatePicker
                           margin='normal'
-                          label='Date'
+                          label='Fecha'
                           value={this.state.selectedDate}
                           onChange={this.handleDateChange}
                         />
@@ -178,7 +178,7 @@ class Savings extends Component {
                       required
                       name='duration'
                       type='number'
-                      label='Duration'
+                      label='Duración'
                       fullWidth
                     />
                   </div>
@@ -188,16 +188,16 @@ class Savings extends Component {
                         name='period'
                         className='browser-default custom-select'
                       >
-                        <option value='0'>Choose your period for</option>
-                        <option value='1'>Day</option>
-                        <option value='2'>Week</option>
-                        <option value='3'>Month</option>
+                        <option value='0'>Elija su tipo de periodo</option>
+                        <option value='1'>Día</option>
+                        <option value='2'>Semana</option>
+                        <option value='3'>Mes</option>
                       </select>
                     </div>
                   </div>
                   <div class='form-group btnExp'>
                     <Button type='submit' value='Savings' variant='contained'>
-                      Save Saving
+                      Guardar Ahorro
                     </Button>
                   </div>
                 </form>

@@ -3,11 +3,10 @@ import './expenses.css'
 import { Link } from 'react-router-dom'
 import AddCircle from '@material-ui/icons/AddCircle'
 import Moment from 'react-moment'
-import Button from '@material-ui/core/Button'
 import getMonth from '../../utils/Month'
 
 export default class ListExpenses extends Component {
-  constructor () {
+  constructor() {
     super()
     this.state = {
       users: [],
@@ -18,12 +17,12 @@ export default class ListExpenses extends Component {
     }
   }
 
-  calculateTotal () {
+  calculateTotal() {
     const prices = this.state.expensedata.map(p => p.quantity)
     return prices.reduce((a, b) => a + b, 0)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     fetch('https://cryptic-retreat-15738.herokuapp.com/api/v1/users')
       .then(response => response.json())
       .then(data => {
@@ -88,7 +87,7 @@ export default class ListExpenses extends Component {
       })
     }
   }
-  render () {
+  render() {
     const year = new Date().getFullYear()
     const DateYM = getMonth() + ' ' + year
     return (
@@ -100,7 +99,7 @@ export default class ListExpenses extends Component {
               onChange={this.searchByName}
               className='inputSearch'
               type='text'
-              placeholder='Search'
+              placeholder='Buscar gasto'
             />
           </div>
           <div class='jumbotron'>
@@ -109,7 +108,7 @@ export default class ListExpenses extends Component {
                 <div className='form-group'>
                   <div class='row'>
                     <div class='col-12 colorRed '>
-                      Expenses {DateYM} ${' '}
+                      Gastos {DateYM} ${' '}
                       {this.calculateTotal()
                         .toFixed(2)
                         .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
@@ -125,16 +124,16 @@ export default class ListExpenses extends Component {
                 <AddCircle />
               </Link>
               <div className='textAdd'>
-                <span>Add Expenses</span>
+                <span>Agregar gasto</span>
               </div>
             </div>
           </div>
           <table class='table c'>
             <thead class='thead-dark'>
               <tr>
-                <th scope='col'>Concept</th>
-                <th scope='col'>Quantity</th>
-                <th scope='col'>Date</th>
+                <th scope='col'>Concepto</th>
+                <th scope='col'>Cantidad</th>
+                <th scope='col'>Fecha</th>
               </tr>
             </thead>
             <tbody>

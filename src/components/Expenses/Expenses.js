@@ -20,7 +20,7 @@ const styles = {
 }
 
 class Expenses extends Component {
-  constructor () {
+  constructor() {
     super()
     this.state = {
       users: [],
@@ -50,12 +50,12 @@ class Expenses extends Component {
     nexmo.message.sendSms(from, to, text)
   }
 
-  calculateTotal () {
+  calculateTotal() {
     const prices = this.state.expenses.map(p => p.quantity)
     return prices.reduce((a, b) => a + b, 0)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     fetch('https://cryptic-retreat-15738.herokuapp.com/api/v1/users')
       .then(response => response.json())
       .then(data => {
@@ -106,10 +106,7 @@ class Expenses extends Component {
     this.setState({ selectedDate: date.toISOString() })
   }
 
-  handleExpense = () => {
-    const { history } = this.props
-    history.push('/expenses')
-  }
+
 
   onSubmit = e => {
     e.preventDefault()
@@ -142,10 +139,10 @@ class Expenses extends Component {
         })
         .catch(e => alert(e))
       // this.send()
-      alert('You have successfully registered')
+      alert('Se A creado exitosamente')
       this.props.history.push('/listexpenses')
     } else {
-      alert('Your incomes cant more than expenses ')
+      alert('Tus ingresos no deben ser mayor a tus gastos')
     }
   }
 
@@ -171,7 +168,7 @@ class Expenses extends Component {
       .catch(e => alert(e))
   }
 
-  render () {
+  render() {
     const { classes } = this.props
     console.log(this.state.expensesBal)
     console.log(this.state.incomesBal)
@@ -184,7 +181,7 @@ class Expenses extends Component {
               <Card picture={ExpensesImage}>
                 <form onSubmit={this.onSubmit}>
                   <div class='row'>
-                    <div class='col-6 colorRed'>Expenses</div>
+                    <div class='col-6 colorRed'>Gastos</div>
                     <div class='col-6 colorRed'>
                       ${' '}
                       {this.calculateTotal()
@@ -193,14 +190,14 @@ class Expenses extends Component {
                     </div>
                   </div>
                   <Link className='linkHistory' to='/listexpenses'>
-                    History
+                    <i className="material-icons eyesIcon"><span>Ver Historial</span> remove_red_eye </i>
                   </Link>
                   <div className='form-group'>
                     <TextField
                       required
                       name='concept'
                       type='text'
-                      label='Concept'
+                      label='Concepto'
                       fullWidth
                     />
                   </div>
@@ -209,7 +206,7 @@ class Expenses extends Component {
                       required
                       name='quantity'
                       type='decimal'
-                      label='Quantity'
+                      label='Cantidad'
                       fullWidth
                     />
                   </div>
@@ -222,21 +219,21 @@ class Expenses extends Component {
                       >
                         <DatePicker
                           margin='normal'
-                          label='Date'
+                          label='Fecha'
                           value={this.state.selectedDate}
                           onChange={this.handleDateChange}
                         />
                       </Grid>
                     </MuiPickersUtilsProvider>
                   </div>
-                  <div className='sm-6'>
+                  <div className='sm-6 marginType'>
                     <div>
                       <select
                         name='type'
                         className='browser-default custom-select'
                       >
-                        <option value='1'>Choose your type</option>
-                        <option value='Fixed'>Fixed</option>
+                        <option value='1'>Tipo de gasto</option>
+                        <option value='Fixed'>Fijo</option>
                         <option value='Variable'>Variable</option>
                       </select>
                     </div>
@@ -247,9 +244,9 @@ class Expenses extends Component {
                         name='status'
                         className='browser-default custom-select'
                       >
-                        <option value='1'>Choose your status</option>
-                        <option value='Paid out'>Paid out</option>
-                        <option value='By paid'>to by paid</option>
+                        <option value='1'>Estatus de gasto</option>
+                        <option value='Paid out'>Pagado</option>
+                        <option value='By paid'>Por pagar</option>
                       </select>
                     </div>
                   </div>
@@ -260,7 +257,7 @@ class Expenses extends Component {
                       value='Expenses'
                       variant='contained'
                     >
-                      <span className='textSubmit'>Save Expenses</span>
+                      <span className='textSubmit'>Guardar gasto</span>
                     </Button>
                     <div className='form-group'>
                       <div className='btnAdd'>
@@ -268,7 +265,7 @@ class Expenses extends Component {
                           <AddCircle />
                         </Link>
                         <div>
-                          <span>Add payment reminder</span>
+                          <span>Agregar recordatorio</span>
                         </div>
                       </div>
                     </div>

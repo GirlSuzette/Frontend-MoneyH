@@ -5,37 +5,32 @@ import DashExpense from './DashExpense'
 import { Bar } from 'react-chartjs-2'
 
 export default class Dashboard extends Component {
-  constructor () {
+  constructor() {
     super()
     this.state = {
       users: [],
       local: '',
-      balance: [],
-      incomes: [],
-      expenses: [],
+      balance: '',
+      incomes: '',
+      expenses: '',
       dataBalan: [],
       period: '',
       expensesData: [],
-      showAño: true,
-      showMes: false
+
     }
   }
 
-  info = e => {
-    this.setState({
-      showAño: !this.state.showLogin,
-      showMes: !this.state.showRecord
-    })
+
+
+  setFormat = price => {
+    if (typeof price !== 'undefined') {
+      return price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+    } else {
+      return '0'
+    }
   }
 
-  onSubmitHandle = e => {
-    e.preventDefault()
-    this.setState({
-      showAño: !this.state.showAño
-    })
-  }
-
-  componentDidMount () {
+  componentDidMount() {
     fetch('https://cryptic-retreat-15738.herokuapp.com/api/v1/users')
       .then(response => response.json())
       .then(data => {
@@ -117,11 +112,11 @@ export default class Dashboard extends Component {
     return getData
   }
 
-  render () {
+  render() {
     const { incomes, expenses, balance, period } = this.state
-    console.log(this.state.expensesData)
+    // console.log(this.state.expensesData)
     const data = {
-      labels: ['Incomes 02-2019', 'Expenses 02-2019', 'Balance 02-2019'],
+      labels: ['Ingresos 02-2019', 'Gastos 02-2019', 'Balance 02-2019'],
       datasets: [
         {
           label: '# Balance',
@@ -167,21 +162,22 @@ export default class Dashboard extends Component {
     }
 
     return (
+
       <React.Fragment>
         <div class='container marginDash'>
           <div class='row' />
-          <h5 className='textDash'>General information {period} </h5>
+          <h5 className='textDash'>Información General {period} </h5>
           <div class='jumbotron'>
             <div class='row centerBal '>
               <div className='form-group'>
                 <div class='row'>
-                  <div class='col-8 colorGreen'>Income</div>
+                  <div class='col-8 colorGreen'>Ingresos</div>
                   <div class='col-8 colorGreen'>${incomes}</div>
                 </div>
               </div>
               <div className='form-group'>
                 <div class='row'>
-                  <div class='col-8 colorRed'>Expenses</div>
+                  <div class='col-8 colorRed'>Gastos</div>
                   <div class='col-8 colorRed'>$ {expenses}</div>
                 </div>
               </div>

@@ -3,7 +3,7 @@ import './dashboard.css'
 import { Bar } from 'react-chartjs-2'
 
 export default class DashIncome extends Component {
-  constructor () {
+  constructor() {
     super()
     this.state = {
       users: [],
@@ -12,7 +12,7 @@ export default class DashIncome extends Component {
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     fetch('https://cryptic-retreat-15738.herokuapp.com/api/v1/users')
       .then(response => response.json())
       .then(data => {
@@ -77,12 +77,12 @@ export default class DashIncome extends Component {
     return getData
   }
 
-  render () {
+  render() {
     const data = {
       labels: [...this.getData()],
       datasets: [
         {
-          label: '# Expenses',
+          label: '# Gastos',
           data: [...this.getExp()],
           backgroundColor: [
             'rgba(255, 99, 132, 0.7)',
@@ -109,7 +109,7 @@ export default class DashIncome extends Component {
       duration: 12000,
       title: {
         display: true,
-        text: 'Expenses',
+        text: 'Gastos',
         fontSize: 20
       },
       maintainAspectRatio: false,

@@ -1,6 +1,5 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
-// import Button from '@material-ui/core/Button';
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
@@ -30,37 +29,16 @@ const styles = {
 }
 
 class Menu extends React.Component {
-  constructor () {
+  constructor() {
     super()
     this.state = {
       open: false,
-      fullName: ''
+
     }
   }
 
-  // componentDidMount () {
-  //   fetch('https://cryptic-retreat-15738.herokuapp.com/api/v1/users')
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       // console.log(data)
-  //       this.setState({
-  //         users: data.data
-  //       })
-  //
-  //       const token = localStorage.getItem('token')
-  //       var base64Url = token.split('.')[1]
-  //       var base64 = base64Url.replace('-', '+').replace('_', '/')
-  //       const t = JSON.parse(window.atob(base64))
-  //       // console.log(t.email)
-  //       const currentUser = data.data.filter(user => {
-  //         if (user.email === t.email) {
-  //           this.setState({ user: user, fullName: user.fullName })
-  //           return user
-  //         }
-  //       })
-  //     })
-  // }
-  // vv
+
+
   toggleDrawer = () => {
     this.setState({
       open: !this.state.open
@@ -73,7 +51,7 @@ class Menu extends React.Component {
     history.push('/')
   }
 
-  render () {
+  render() {
     const AppBarStyles = {
       flex: 1
     }
@@ -109,7 +87,7 @@ class Menu extends React.Component {
           {isLoggedIn() && (
             <div className='MenuFlex'>
               <span className='logoup MenuFlex' onClick={this.handleLogout}>
-                <div className='titleMenu'>Welcome {this.state.fullName}</div>
+                <div className='titleMenu'>Bienvenido</div>
                 <div>
                   <i className='material-icons'>exit_to_app</i>
                 </div>
@@ -135,23 +113,23 @@ class Menu extends React.Component {
               </ListItem>
               <ListItem button>
                 <Link className='side' to='/update'>
-                  Update Account
+                  Actualizar Cuenta
                 </Link>
               </ListItem>
               <ListItem button>
                 <Link className='side' to='/listincomes'>
-                  Income
+                  Ingresos
                 </Link>
               </ListItem>
               <Divider />
               <ListItem button>
                 <Link className='side' to='/listexpenses'>
-                  Expenses
+                  Gastos
                 </Link>
               </ListItem>
               <ListItem button>
                 <Link className='side' to='/listsavings'>
-                  Saving goals
+                  Meta de Ahorro
                 </Link>
               </ListItem>
               <ListItem button>

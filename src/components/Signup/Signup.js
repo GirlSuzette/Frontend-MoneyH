@@ -8,25 +8,9 @@ class Signup extends React.Component {
     error: {
       status: false,
       message: ''
-    },
-    showChild: true
-  }
-
-  closeChild = () => {
-    this.setState({
-      showChild: false
-    })
-  }
-
-  redirect = () => {
-    const url = window.decodeURIComponent(this.props.location.search)
-    if (url !== '') {
-      this.props.history.push('/' + url.split('/')[1] || '/')
-    } else {
-      this.props.history.push('/login')
     }
-    this.closeChild()
   }
+
 
   onSubmit = e => {
     e.preventDefault()
@@ -66,16 +50,17 @@ class Signup extends React.Component {
         }
       })
       .catch(e => alert(e))
-    alert('You have successfully registered')
+    this.props.history.push('/login')
+
   }
-  render () {
+  render() {
     return (
       <React.Fragment>
         <div className='thislogin'>
           <div className='expensesContainer'>
             <div className='container ContLogin'>
               <div className='container' id='registration-form'>
-                <h1 className='centerTitle sizeTitle'>Sign Up</h1>
+                <h1 className='centerTitle sizeTitle'>Crea tu cuenta</h1>
                 <div className='image' />
                 <div className='frm'>
                   <form onSubmit={this.onSubmit}>
@@ -84,9 +69,9 @@ class Signup extends React.Component {
                         required
                         name='fullName'
                         type='text'
-                        label='Name'
+                        label='Nombre'
                         fullWidth
-                        // onChange={this.handleChange}
+                      // onChange={this.handleChange}
                       />
                     </div>
                     <div className='form-group'>
@@ -96,7 +81,7 @@ class Signup extends React.Component {
                         type='email'
                         label='Email'
                         fullWidth
-                        // onChange={this.handleChange}
+                      // onChange={this.handleChange}
                       />
                     </div>
                     <div className='form-group'>
@@ -104,14 +89,14 @@ class Signup extends React.Component {
                         required
                         name='number'
                         type='number'
-                        label='Phone Number'
+                        label='Número Celular'
                         onInput={e => {
                           e.target.value = Math.max(0, parseInt(e.target.value))
                             .toString()
                             .slice(0, 10)
                         }}
                         fullWidth
-                        // onChange={this.handleChange}
+                      // onChange={this.handleChange}
                       />
                     </div>
                     <div className='form-group'>
@@ -119,17 +104,15 @@ class Signup extends React.Component {
                         required
                         name='password'
                         type='password'
-                        label='Password'
+                        label='Contraseña'
                         fullWidth
-                        // onChange={this.handleChange}
+                      // onChange={this.handleChange}
                       />
                     </div>
-                    {this.state.error.status && this.state.showChild && (
-                      <p>{this.succes(this.state.error.message)}</p>
-                    )}
+                    {this.state.error.status && <p>{this.state.error.message}</p>}
                     <div class='form-group'>
                       <Button type='submit' value='Login' variant='contained'>
-                        Saved
+                      Registrarse
                       </Button>
                     </div>
                   </form>

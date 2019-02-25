@@ -62,7 +62,7 @@ class Login extends React.Component {
           <div className='expensesContainer'>
             <div className='container ContLogin'>
               <div className='container' id='registration-form'>
-                <h1 className='centerTitle sizeTitle'>Log In</h1>
+                <h1 className='centerTitle sizeTitle'>Inicia sesión en Money Home</h1>
                 <div className='image' />
                 <div className='frm'>
                   <form onSubmit={this.onSubmit}>
@@ -80,7 +80,7 @@ class Login extends React.Component {
                         required
                         name='password'
                         type='password'
-                        label='Password'
+                        label='Contraseña'
                         fullWidth
                       // onChange={this.handleChange}
                       />
@@ -93,13 +93,13 @@ class Login extends React.Component {
                         variant='contained'
                         onClick={this.handleLogout}
                       >
-                        Login
+                        Iniciar sesión
                   </Button>
                       <div className='signupContainer'>
                         <p>
-                          Don't have an Money Home account yet?
+                          ¿Nuevo en Money Home?
                       <Link className='signupLink' to='/signup'>
-                            Sign up now!
+                            Regístrate ahora »
                       </Link>
                         </p>
                       </div>

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import getMonth from '../../utils/Month'
 
 export default class ListSavings extends Component {
-  constructor () {
+  constructor() {
     super()
     this.state = {
       users: [],
@@ -15,12 +15,12 @@ export default class ListSavings extends Component {
     }
   }
 
-  calculateTotal () {
+  calculateTotal() {
     const prices = this.state.savings.map(p => p.quantity)
     return prices.reduce((a, b) => a + b, 0)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     fetch('https://cryptic-retreat-15738.herokuapp.com/api/v1/users')
       .then(response => response.json())
       .then(data => {
@@ -66,9 +66,10 @@ export default class ListSavings extends Component {
       .catch(e => alert(e))
   }
 
-  render () {
+  render() {
     const year = new Date().getFullYear()
-    const DateYM = getMonth() + ' ' + year
+    const Month = new Date().getMonth()
+    const DateYM = getMonth(Month) + ' ' + year
     return (
       <React.Fragment>
         <div class='container marginlist'>
@@ -79,8 +80,8 @@ export default class ListSavings extends Component {
                 <div className='form-group'>
                   <div class='row'>
                     <div class='col-12 colorBlue '>
-                      Saving goals {DateYM}{' '}
-                     $ {this.calculateTotal()
+                      Metas de ahorro {DateYM}{' '}
+                      $ {this.calculateTotal()
                         .toFixed(2)
                         .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
                     </div>
@@ -95,15 +96,15 @@ export default class ListSavings extends Component {
                 <AddCircle />
               </Link>
               <div className='textAdd'>
-                <span>Add Saving goals</span>
+                <span>Agregar Meta de ahorro</span>
               </div>
             </div>
           </div>
           <table class='table'>
             <thead class='thead-dark'>
               <tr>
-                <th scope='col'>Quantity</th>
-                <th scope='col'>Date</th>
+                <th scope='col'>Cantidad</th>
+                <th scope='col'>Fecha</th>
               </tr>
             </thead>
             <tbody>

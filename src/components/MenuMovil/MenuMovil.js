@@ -7,7 +7,7 @@ import inversion from '../../image/inversion.svg'
 import './MenuMovil.css'
 
 export default class MenuApp extends Component {
-  render () {
+  render() {
     return (
       <div className='MenuMovilWrap'>
         <div className='MenuMovilWrapMid'>
@@ -44,7 +44,7 @@ export default class MenuApp extends Component {
                     className='ImageMenuMovil'
                     alt='ingresos'
                   />
-                  <p className='TextMenu'>Incomes</p>
+                  <p className='TextMenu'>Ingresos</p>
                 </div>
               </div>
             </Link>

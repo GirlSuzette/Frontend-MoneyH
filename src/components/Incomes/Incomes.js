@@ -19,7 +19,7 @@ const styles = {
 }
 
 class Incomes extends Component {
-  constructor () {
+  constructor() {
     super()
     this.state = {
       users: [],
@@ -33,7 +33,7 @@ class Incomes extends Component {
     }
   }
 
-  calculateTotal () {
+  calculateTotal() {
     const prices = this.state.incomes.map(p => p.quantity)
     return prices.reduce((a, b) => a + b, 0)
   }
@@ -50,7 +50,7 @@ class Incomes extends Component {
 
     nexmo.message.sendSms(from, to, text)
   }
-  componentDidMount () {
+  componentDidMount() {
     fetch('https://cryptic-retreat-15738.herokuapp.com/api/v1/users')
       .then(response => response.json())
       .then(data => {
@@ -131,18 +131,18 @@ class Incomes extends Component {
     alert('You have successfully registered')
     this.props.history.push('/listincomes')
   }
-  render () {
+  render() {
     const { classes } = this.props
     return (
       <div className='incomesContainer'>
         <div className='container'>
-          <div class='row'>
+          <div className='row'>
             <div className='frm col-sm-4'>
               <Card picture={IncomesImage}>
                 <form onSubmit={this.onSubmit}>
-                  <div class='row'>
-                    <div class='col-6 colorGreen'>Incomes</div>
-                    <div class='col- colorGreen'>
+                  <div className='row'>
+                    <div className='col-6 colorGreen'>Ingresos</div>
+                    <div className='col- colorGreen'>
                       ${' '}
                       {this.calculateTotal()
                         .toFixed(2)
@@ -150,14 +150,14 @@ class Incomes extends Component {
                     </div>
                   </div>
                   <Link className='linkHistory' to='/listincomes'>
-                    History
+                    <i className="material-icons eyesIcon"><span>Ver Historial</span> remove_red_eye </i>
                   </Link>
                   <div className='form-group'>
                     <TextField
                       required
                       name='concept'
                       type='text'
-                      label='Concept'
+                      label='Concepto'
                       fullWidth
                     />
                   </div>
@@ -166,7 +166,7 @@ class Incomes extends Component {
                       required
                       name='quantity'
                       type='decimal'
-                      label='Quantity'
+                      label='Cantidad'
                       fullWidth
                     />
                   </div>
@@ -179,7 +179,7 @@ class Incomes extends Component {
                       >
                         <DatePicker
                           margin='normal'
-                          label='Date'
+                          label='Fecha'
                           value={this.state.selectedDate}
                           onChange={this.handleDateChange}
                         />
@@ -192,15 +192,15 @@ class Incomes extends Component {
                         name='type'
                         className='browser-default custom-select'
                       >
-                        <option value='1'>Choose your type</option>
-                        <option value='Fixed'>Fixed</option>
+                        <option value='1'>Tipo de ingreso</option>
+                        <option value='Fixed'>Fijo</option>
                         <option value='Variable'>Variable</option>
                       </select>
                     </div>
                   </div>
-                  <div class='form-group btnExp'>
+                  <div className='form-group btnExp'>
                     <Button type='submit' value='Incomes' variant='contained'>
-                      Save Income
+                      Guardar ingreso
                     </Button>
                   </div>
                 </form>
