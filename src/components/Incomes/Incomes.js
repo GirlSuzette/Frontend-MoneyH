@@ -192,7 +192,7 @@ class Incomes extends Component {
                         name='type'
                         className='browser-default custom-select'
                       >
-                        <option value='1'>Tipo de ingreso</option>
+                        <option value='1'>Elige tipo de ingreso</option>
                         <option value='Fixed'>Fijo</option>
                         <option value='Variable'>Variable</option>
                       </select>

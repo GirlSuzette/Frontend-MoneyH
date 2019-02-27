@@ -2,21 +2,21 @@ const getMonth = () => {
   const date = new Date()
 
   const month = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
+    'Enero',
+    'Febrero',
+    'Marzo',
+    'Abril',
+    'Mayo',
+    'Junio',
+    'Julio',
+    'Agosto',
     'September',
     'October',
     'November',
     'December'
   ]
 
-  return month[date.getDay() + 1]
+  return month[date.getDay() - 1]
 }
 
 module.exports = getMonth

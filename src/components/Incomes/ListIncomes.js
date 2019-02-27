@@ -108,7 +108,7 @@ export default class ListIncomes extends Component {
                 <div className='form-group'>
                   <div>
                     <div class='col-12 colorGreen '>
-                      Ingresos {DateYM} ${' '}
+                      Ingresos de {DateYM} ${' '}
                       {this.calculateTotal()
                         .toFixed(2)
                         .replace(/\d(?=(\d{3})+\.)/g, '$&,')}

@@ -20,7 +20,7 @@ const styles = theme => ({
 })
 
 class Reminder extends Component {
-  constructor () {
+  constructor() {
     super()
     this.state = {
       users: [],
@@ -60,7 +60,7 @@ class Reminder extends Component {
     this.setState({ selectedDate: date })
   }
 
-  componentDidMount () {
+  componentDidMount() {
     fetch('https://cryptic-retreat-15738.herokuapp.com/api/v1/users')
       .then(response => response.json())
       .then(data => {
@@ -145,7 +145,7 @@ class Reminder extends Component {
     this.props.history.push('/reminders')
   }
 
-  render () {
+  render() {
     const { classes } = this.props
     console.log(this.state.selectedDate)
     return (
@@ -153,7 +153,7 @@ class Reminder extends Component {
         <div className='container'>
           <div className='row'>
             <div className='frm col-sm-4'>
-              <Card cardTitle='Reminder' picture={timeImage}>
+              <Card cardTitle='Recordatorio' picture={timeImage}>
                 <form className={classes.container} onSubmit={this.onSubmit}>
                   <div className='form-group btnExp'>
                     <div>
@@ -161,7 +161,7 @@ class Reminder extends Component {
                         name='concept'
                         className='browser-default custom-select'
                       >
-                        <option>Choose your Expenses for</option>status
+                        <option>Elige tu gasto</option>
                         {this.state.expenses.map(expense => {
                           if (expense.status === 'By paid') {
                             return (
@@ -178,7 +178,7 @@ class Reminder extends Component {
                     <TextField
                       id='datetime-local'
                       name='date'
-                      label='Date'
+                      label='Fecha'
                       type='datetime-local'
                       defaultValue={this.state.selectedDate}
                       onChange={this.handleDateChange}
@@ -191,7 +191,7 @@ class Reminder extends Component {
 
                   <div class='form-group btnExp'>
                     <Button type='submit' value='Login' variant='contained'>
-                      Save
+                      Guardar
                     </Button>
                   </div>
                 </form>

@@ -232,7 +232,7 @@ class Expenses extends Component {
                         name='type'
                         className='browser-default custom-select'
                       >
-                        <option value='1'>Tipo de gasto</option>
+                        <option value='1'>Elige tipo de gasto</option>
                         <option value='Fixed'>Fijo</option>
                         <option value='Variable'>Variable</option>
                       </select>
@@ -244,7 +244,7 @@ class Expenses extends Component {
                         name='status'
                         className='browser-default custom-select'
                       >
-                        <option value='1'>Estatus de gasto</option>
+                        <option value='1'>Elige el estatus del gasto</option>
                         <option value='Paid out'>Pagado</option>
                         <option value='By paid'>Por pagar</option>
                       </select>

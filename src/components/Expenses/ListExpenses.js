@@ -108,7 +108,7 @@ export default class ListExpenses extends Component {
                 <div className='form-group'>
                   <div class='row'>
                     <div class='col-12 colorRed '>
-                      Gastos {DateYM} ${' '}
+                      Gastos de {DateYM} ${' '}
                       {this.calculateTotal()
                         .toFixed(2)
                         .replace(/\d(?=(\d{3})+\.)/g, '$&,')}

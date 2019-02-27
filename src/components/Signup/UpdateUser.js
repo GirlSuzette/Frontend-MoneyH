@@ -91,7 +91,7 @@ class UpdateUser extends React.Component {
     return (
       <React.Fragment>
         <div className='thislogin'>
-          <div className='expensesContainer'>
+          <div className='updateContainer'>
             <div className='container ContLogin'>
               <div className='container' id='registration-form'>
                 <h1 className='centerTitle sizeTitle'>Actualizar Cuenta</h1>
