@@ -56,34 +56,12 @@ class Expenses extends Component {
   }
 
   componentDidMount() {
-    fetch('https://cryptic-retreat-15738.herokuapp.com/api/v1/users')
-      .then(response => response.json())
-      .then(data => {
-        //   console.log(data)
-        this.setState({
-          users: data.data
-        })
-
-        const token = localStorage.getItem('token')
-        var base64Url = token.split('.')[1]
-        var base64 = base64Url.replace('-', '+').replace('_', '/')
-        const t = JSON.parse(window.atob(base64))
-        // console.log(t.email)
-        const currentUser = data.data.filter(user => {
-          if (user.email === t.email) {
-            this.setState({ user: user })
-            return user
-          }
-        })
-        // console.log(currentUser)
-        this.getExpenses(currentUser)
-        this.getBalance(currentUser)
-      })
+    this.getExpenses()
+    this.getBalance()
   }
 
-  getExpenses = currentUser => {
-    // console.log(currentUser)
-    const userId = currentUser[0]._id
+  getExpenses = () => {
+    const userId = this.props.data._id
     console.log(userId)
     const API_URL = 'https://cryptic-retreat-15738.herokuapp.com/api/v1'
     fetch(`${API_URL}/users/${userId}/expenses`, {
@@ -113,7 +91,7 @@ class Expenses extends Component {
 
     const API_URL = 'https://cryptic-retreat-15738.herokuapp.com/api/v1/'
     if (this.state.balance > e.target.quantity.value) {
-      fetch(`${API_URL}/users/${this.state.user._id}/expenses`, {
+      fetch(`${API_URL}/users/${this.props.data._id}/expenses`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -128,8 +106,6 @@ class Expenses extends Component {
       })
         .then(response => response.json())
         .then(data => {
-          console.log(data)
-
           this.setState({
             error: {
               status: true,
@@ -139,17 +115,15 @@ class Expenses extends Component {
         })
         .catch(e => alert(e))
       // this.send()
-      alert('Se A creado exitosamente')
+      alert('Se ha registrado exitosamente')
       this.props.history.push('/listexpenses')
     } else {
       alert('Tus ingresos no deben ser mayor a tus gastos')
     }
   }
 
-  getBalance = currentUser => {
-    // console.log(currentUser)
-    const userId = currentUser[0]._id
-    // console.log(userId)
+  getBalance = () => {
+    const userId = this.props.data._id
     const API_URL = 'https://cryptic-retreat-15738.herokuapp.com/api/v1'
     fetch(`${API_URL}/users/${userId}/balances`, {
       method: 'GET',
@@ -170,9 +144,7 @@ class Expenses extends Component {
 
   render() {
     const { classes } = this.props
-    console.log(this.state.expensesBal)
-    console.log(this.state.incomesBal)
-    // console.log(this.state)
+
     return (
       <div className='expensesContainer'>
         <div className='container'>

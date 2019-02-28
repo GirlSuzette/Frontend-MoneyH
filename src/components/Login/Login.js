@@ -11,13 +11,7 @@ class Login extends React.Component {
       message: ''
     }
   }
-  handleLogIn = () => {
-    const { history } = this.props
-
-    localStorage.removeItem('token')
-    history.push('/')
-  }
-
+  
   onSubmit = e => {
     e.preventDefault()
 
@@ -62,7 +56,7 @@ class Login extends React.Component {
           <div className='expensesContainer'>
             <div className='container ContLogin'>
               <div className='container' id='registration-form'>
-                <h1 className='centerTitle sizeTitle'>Inicia sesión en Money Home</h1>
+                <h1 className='centerTitle sizeTitle'>Inicia sesión</h1>
                 <div className='image' />
                 <div className='frm'>
                   <form onSubmit={this.onSubmit}>
@@ -72,7 +66,6 @@ class Login extends React.Component {
                         name='email'
                         label='Email'
                         fullWidth
-                      // onChange={this.handleChange}
                       />
                     </div>
                     <div className='form-group'>
@@ -82,7 +75,6 @@ class Login extends React.Component {
                         type='password'
                         label='Contraseña'
                         fullWidth
-                      // onChange={this.handleChange}
                       />
                     </div>
                     {this.state.error.status && <p>{this.state.error.message}</p>}
@@ -91,7 +83,7 @@ class Login extends React.Component {
                         type='submit'
                         value='Login'
                         variant='contained'
-                        onClick={this.handleLogout}
+                      // onClick={this.handleLogout}
                       >
                         Iniciar sesión
                   </Button>

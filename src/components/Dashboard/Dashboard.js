@@ -3,6 +3,7 @@ import './dashboard.css'
 import DashIncome from './DashIncome'
 import DashExpense from './DashExpense'
 import { Bar } from 'react-chartjs-2'
+import addCommas from '../../utils/addComas'
 
 export default class Dashboard extends Component {
   constructor() {
@@ -22,44 +23,14 @@ export default class Dashboard extends Component {
 
 
 
-  setFormat = price => {
-    if (typeof price !== 'undefined') {
-      return price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
-    } else {
-      return '0'
-    }
-  }
-
   componentDidMount() {
-    fetch('https://cryptic-retreat-15738.herokuapp.com/api/v1/users')
-      .then(response => response.json())
-      .then(data => {
-        // console.log(data)
-        this.setState({
-          users: data.data
-        })
+    this.getBalance()
+    this.getExpenses()
 
-        const token = localStorage.getItem('token')
-        var base64Url = token.split('.')[1]
-        var base64 = base64Url.replace('-', '+').replace('_', '/')
-        const t = JSON.parse(window.atob(base64))
-        // console.log(t.email)
-        const currentUser = data.data.filter(user => {
-          if (user.email === t.email) {
-            this.setState({ user: user })
-            return user
-          }
-        })
-
-        this.getBalance(currentUser)
-        this.getExpenses(currentUser)
-      })
   }
 
-  getBalance = currentUser => {
-    // console.log(currentUser)
-    const userId = currentUser[0]._id
-    // console.log(userId)
+  getBalance = () => {
+    const userId = this.props.data._id
     const API_URL = 'https://cryptic-retreat-15738.herokuapp.com/api/v1'
     fetch(`${API_URL}/users/${userId}/balances`, {
       method: 'GET',
@@ -80,9 +51,8 @@ export default class Dashboard extends Component {
       .catch(e => alert(e))
   }
 
-  getExpenses = currentUser => {
-    // console.log(currentUser)
-    const userId = currentUser[0]._id
+  getExpenses = () => {
+    const userId = this.props.data._id
     const API_URL = 'https://cryptic-retreat-15738.herokuapp.com/api/v1'
     fetch(`${API_URL}/users/${userId}/expenses`, {
       method: 'GET',
@@ -100,23 +70,13 @@ export default class Dashboard extends Component {
       .catch(e => alert(e))
   }
 
-  getMonth = () => {
-    const getData = this.state.expensesData.map(exp => {
-      const newdate = exp.date
-      const d = newdate.replace(/T/g, '-')
-      const y = d.split('-')
-      const newData = y[0] + '-' + y[2]
-      // console.log(x)
-      return newData
-    })
-    return getData
-  }
+
 
   render() {
     const { incomes, expenses, balance, period } = this.state
     // console.log(this.state.expensesData)
     const data = {
-      labels: ['Ingresos 02-2019', 'Gastos 02-2019', 'Balance 02-2019'],
+      labels: [`Ingresos ${period}`, `Gastos ${period}`, `Balance ${period}`,],
       datasets: [
         {
           label: '# Balance',
@@ -172,20 +132,20 @@ export default class Dashboard extends Component {
               <div className='form-group'>
                 <div class='row'>
                   <div class='col-8 colorGreen'>Ingresos</div>
-                  <div class='col-8 colorGreen'>${incomes}</div>
+                  <div class='col-8 colorGreen'>${addCommas(incomes)}</div>
                 </div>
               </div>
               <div className='form-group'>
                 <div class='row'>
                   <div class='col-8 colorRed'>Gastos</div>
-                  <div class='col-8 colorRed'>$ {expenses}</div>
+                  <div class='col-8 colorRed'>$ {addCommas(expenses)}</div>
                 </div>
               </div>
 
               <div className='form-group'>
                 <div class='row'>
                   <div class='col-8 colorPur'>Balance</div>
-                  <div class='col-8 colorPur'>$ {balance}</div>
+                  <div class='col-8 colorPur'>$ {addCommas(balance)}</div>
                 </div>
               </div>
             </div>

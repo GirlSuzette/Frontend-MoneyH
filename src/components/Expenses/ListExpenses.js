@@ -89,6 +89,7 @@ export default class ListExpenses extends Component {
   }
   render() {
     const year = new Date().getFullYear()
+    // const month = new Date().getMonth()
     const DateYM = getMonth() + ' ' + year
     return (
       <React.Fragment>

@@ -12,6 +12,7 @@ import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers'
 import { Link } from 'react-router-dom'
 const Nexmo = require('nexmo')
 
+
 const styles = {
   grid: {
     width: '60%'
@@ -46,40 +47,21 @@ class Incomes extends Component {
 
     const from = 'Nexmo'
     const to = '525610591995'
-    const text = `Add Income`
+    const text = `Add Expenses`
 
     nexmo.message.sendSms(from, to, text)
   }
-  componentDidMount() {
-    fetch('https://cryptic-retreat-15738.herokuapp.com/api/v1/users')
-      .then(response => response.json())
-      .then(data => {
-        console.log(data)
-        this.setState({
-          users: data.data
-        })
 
-        const token = localStorage.getItem('token')
-        var base64Url = token.split('.')[1]
-        var base64 = base64Url.replace('-', '+').replace('_', '/')
-        const t = JSON.parse(window.atob(base64))
-        // console.log(t.email)
-        const currentUser = data.data.filter(user => {
-          if (user.email === t.email) {
-            this.setState({ user: user })
-            return user
-          }
-        })
-        // console.log(currentUser)
-        this.getIncomes(currentUser)
-      })
+
+  componentDidMount() {
+    this.getIncomes()
   }
 
-  getIncomes = currentUser => {
-    // console.log(currentUser)
-    const userId = currentUser[0]._id
-    console.log(userId)
+  getIncomes = () => {
+    const userId = this.props.data._id
+
     const API_URL = 'https://cryptic-retreat-15738.herokuapp.com/api/v1'
+
     fetch(`${API_URL}/users/${userId}/incomes`, {
       method: 'GET',
       headers: {
@@ -88,7 +70,6 @@ class Incomes extends Component {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data)
         this.setState({
           incomes: data.data
         })
@@ -105,7 +86,7 @@ class Incomes extends Component {
 
     const API_URL = 'https://cryptic-retreat-15738.herokuapp.com/api/v1/'
 
-    fetch(`${API_URL}/users/${this.state.user._id}/incomes`, {
+    fetch(`${API_URL}/users/${this.props.data._id}/incomes`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -127,8 +108,8 @@ class Incomes extends Component {
         })
       })
       .catch(e => alert(e))
-    // this.send()
-    alert('You have successfully registered')
+    this.send()
+    alert('Se ha registrado exitosamente')
     this.props.history.push('/listincomes')
   }
   render() {

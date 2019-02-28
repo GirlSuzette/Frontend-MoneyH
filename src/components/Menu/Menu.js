@@ -128,15 +128,15 @@ class Menu extends React.Component {
                 </Link>
               </ListItem>
               <ListItem button>
-                <Link className='side' to='/listsavings'>
-                  Meta de Ahorro
-                </Link>
-              </ListItem>
-              <ListItem button>
                 <Link className='side' to='/dashboard'>
                   Dashboard
                 </Link>
               </ListItem>
+              {/* <ListItem button>
+                <Link className='side' to='/listsavings'>
+                  Meta de Ahorro
+                </Link>
+              </ListItem> */}
             </List>
           </div>
         </Drawer>
