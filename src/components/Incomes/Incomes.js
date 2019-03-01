@@ -47,7 +47,7 @@ class Incomes extends Component {
     })
 
     const from = 'Nexmo'
-    const to = '525610591995'
+    const to = '5215610591995'
     const text = `Agregaste un Ingreso`
 
     nexmo.message.sendSms(from, to, text)
