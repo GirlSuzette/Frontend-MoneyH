@@ -10,8 +10,9 @@ import { withStyles } from '@material-ui/core/styles'
 import DateFnsUtils from '@date-io/date-fns'
 import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers'
 import { Link } from 'react-router-dom'
-const Nexmo = require('nexmo')
+// import addCommas from '../../utils/addComas'
 
+const Nexmo = require('nexmo')
 
 const styles = {
   grid: {
@@ -20,7 +21,7 @@ const styles = {
 }
 
 class Incomes extends Component {
-  constructor() {
+  constructor () {
     super()
     this.state = {
       users: [],
@@ -34,26 +35,25 @@ class Incomes extends Component {
     }
   }
 
-  calculateTotal() {
+  calculateTotal () {
     const prices = this.state.incomes.map(p => p.quantity)
     return prices.reduce((a, b) => a + b, 0)
   }
 
   send = () => {
     const nexmo = new Nexmo({
-      apiKey: '00eabd5f',
-      apiSecret: 'CpLhv8kQK6zDqg8M'
+      apiKey: 'cfe089da',
+      apiSecret: 'cRQsMIyv015nFMaZ'
     })
 
     const from = 'Nexmo'
     const to = '525610591995'
-    const text = `Add Expenses`
+    const text = `Agregaste un Ingreso`
 
     nexmo.message.sendSms(from, to, text)
   }
 
-
-  componentDidMount() {
+  componentDidMount () {
     this.getIncomes()
   }
 
@@ -112,7 +112,7 @@ class Incomes extends Component {
     alert('Se ha registrado exitosamente')
     this.props.history.push('/listincomes')
   }
-  render() {
+  render () {
     const { classes } = this.props
     return (
       <div className='incomesContainer'>
@@ -130,8 +130,16 @@ class Incomes extends Component {
                         .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
                     </div>
                   </div>
+                  {/* <div className='row'>
+                    <div className='col-6 colorPur'>Balance</div>
+                    <div className='col- colorPur'>
+                      $ {addCommas(this.props.balance)}
+                    </div>
+                  </div> */}
                   <Link className='linkHistory' to='/listincomes'>
-                    <i className="material-icons eyesIcon"><span>Ver Historial</span> remove_red_eye </i>
+                    <i className='material-icons eyesIcon'>
+                      <span>Ver Historial</span> remove_red_eye{' '}
+                    </i>
                   </Link>
                   <div className='form-group'>
                     <TextField

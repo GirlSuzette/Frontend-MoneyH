@@ -119,13 +119,25 @@ export default class ListExpenses extends Component {
               </div>
             </div>
           </div>
-          <div className='form-group'>
-            <div className='btnAddInc'>
-              <Link to='/expenses'>
-                <AddCircle />
-              </Link>
-              <div className='textAdd'>
-                <span>Agregar gasto</span>
+          <div className='flexReco'>
+            <div className='form-group'>
+              <div className='btnAddInc'>
+                <Link to='/expenses'>
+                  <AddCircle />
+                </Link>
+                <div className='textAdd'>
+                  <span>Agregar gasto</span>
+                </div>
+              </div>
+            </div>
+            <div className='form-group'>
+              <div className='btnAddInc'>
+                <Link to='/reminders'>
+                  <AddCircle />
+                </Link>
+                <div className='textAdd'>
+                  <span>Agregar recordatorio</span>
+                </div>
               </div>
             </div>
           </div>

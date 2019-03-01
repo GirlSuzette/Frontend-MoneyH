@@ -11,6 +11,8 @@ import DateFnsUtils from '@date-io/date-fns'
 import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers'
 import { Link } from 'react-router-dom'
 import AddCircle from '@material-ui/icons/AddCircle'
+// import addCommas from '../../utils/addComas'
+
 const Nexmo = require('nexmo')
 
 const styles = {
@@ -20,7 +22,7 @@ const styles = {
 }
 
 class Expenses extends Component {
-  constructor() {
+  constructor () {
     super()
     this.state = {
       users: [],
@@ -33,29 +35,29 @@ class Expenses extends Component {
       expenses: [],
       expensesBal: null,
       incomesBal: null,
-      balance: null
+      balance: '0'
     }
   }
 
   send = () => {
     const nexmo = new Nexmo({
-      apiKey: '00eabd5f',
-      apiSecret: 'CpLhv8kQK6zDqg8M'
+      apiKey: 'cfe089da',
+      apiSecret: 'cRQsMIyv015nFMaZ'
     })
 
     const from = 'Nexmo'
     const to = '525610591995'
-    const text = `Add Expenses`
+    const text = `Agregaste un gasto`
 
     nexmo.message.sendSms(from, to, text)
   }
 
-  calculateTotal() {
+  calculateTotal () {
     const prices = this.state.expenses.map(p => p.quantity)
     return prices.reduce((a, b) => a + b, 0)
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.getExpenses()
     this.getBalance()
   }
@@ -83,8 +85,6 @@ class Expenses extends Component {
   handleDateChange = date => {
     this.setState({ selectedDate: date.toISOString() })
   }
-
-
 
   onSubmit = e => {
     e.preventDefault()
@@ -114,7 +114,7 @@ class Expenses extends Component {
           })
         })
         .catch(e => alert(e))
-      // this.send()
+      this.send()
       alert('Se ha registrado exitosamente')
       this.props.history.push('/listexpenses')
     } else {
@@ -142,7 +142,7 @@ class Expenses extends Component {
       .catch(e => alert(e))
   }
 
-  render() {
+  render () {
     const { classes } = this.props
 
     return (
@@ -154,15 +154,23 @@ class Expenses extends Component {
                 <form onSubmit={this.onSubmit}>
                   <div class='row'>
                     <div class='col-6 colorRed'>Gastos</div>
-                    <div class='col-6 colorRed'>
+                    <div class='col- colorRed'>
                       ${' '}
                       {this.calculateTotal()
                         .toFixed(2)
                         .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
                     </div>
                   </div>
+                  {/* <div className='row'>
+                    <div className='col-6 colorPur'>Balance</div>
+                    <div className='col- colorPur'>
+                      $ {addCommas(this.props.balance)}
+                    </div>
+                  </div> */}
                   <Link className='linkHistory' to='/listexpenses'>
-                    <i className="material-icons eyesIcon"><span>Ver Historial</span> remove_red_eye </i>
+                    <i className='material-icons eyesIcon'>
+                      <span>Ver Historial</span> remove_red_eye{' '}
+                    </i>
                   </Link>
                   <div className='form-group'>
                     <TextField

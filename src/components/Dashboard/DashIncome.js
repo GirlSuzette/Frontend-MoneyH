@@ -71,8 +71,8 @@ export default class DashIncome extends Component {
       const d = newdate.replace(/T/g, '-')
       const y = d.split('-')
       const newData = exp.concept + ' ' + y[0] + '-' + y[2]
-      const horas = y[3].replace(/:/g, '-')
-      const x = horas.split('-')
+      // const horas = y[3].replace(/:/g, '-')
+      // const x = horas.split('-')
       // console.log(x)
       return newData
     })

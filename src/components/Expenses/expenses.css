@@ -90,7 +90,9 @@ svg.MuiSvgIcon-root-50 {
 .marginType{
   margin-bottom:15px;
 }
-
+.flexReco{
+  display: flex;
+}
 @media screen and (min-width: 1024px) {
   .btnAdd {
     margin-left: 20px;

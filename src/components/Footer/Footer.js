@@ -16,18 +16,15 @@ export default class Footer extends Component {
               <i class='fa fa-twitter' />
             </Link>
             <Link to='#'>
-              <i class='fa fa-linkedin' />
-            </Link>
-            <Link to='#'>
-              <i class='fa fa-github' />
+              <i class='fa fa-instagram' />
             </Link>
           </div>
 
           <div class='footer-left'>
             <p class='footer-links'>
-              <Link to='/'>Home</Link>·<Link to='#'>Ingresos</Link>·
-              <Link to='/expenses'>Gastos</Link>·<Link to='#'>Meta Ahorro</Link>·
-              <Link to='#'>Contact0</Link>
+              <Link to='/'>Home</Link>·<Link to='/incomes'>Ingresos</Link>·
+              <Link to='/expenses'>Gastos</Link>·<Link to='/reminders'>Recordatorio</Link>·
+              <Link to='#'>Contacto</Link>
             </p>
 
             <p>Company Money Home &copy; 2019</p>

@@ -19,11 +19,10 @@ import ListSavings from './components/Saving/ListSaving'
 import MenuApp from './components/MenuMovil/MenuMovil'
 import Reminder from './components/Reminder/Reminder'
 
-
 import './App.css'
 
 class App extends Component {
-  constructor() {
+  constructor () {
     super()
     this.state = {
       users: [],
@@ -32,7 +31,7 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount () {
     fetch('https://cryptic-retreat-15738.herokuapp.com/api/v1/users')
       .then(response => response.json())
       .then(data => {
@@ -51,12 +50,11 @@ class App extends Component {
             return user
           }
         })
-
       })
   }
 
-  render() {
-    console.log(this.state.user)
+  render () {
+    // console.log(this.state.user)
     return (
       <div>
         <Menu />
@@ -65,41 +63,38 @@ class App extends Component {
           <Route path='/login' exact component={Login} />
           <Route path='/signup' exact component={Signup} />
           <PrivateRoute path='/update' exact component={UpdateUser} />
-          {/* <PrivateRoute path='/expenses' exact component={Expenses} /> */}
-          {/* <PrivateRoute path='/incomes' exact component={Incomes} /> */}
-          {/* <PrivateRoute path='/dashboard' exact component={Dashboard} /> */}
           <PrivateRoute path='/savings' exact component={Savings} />
           <PrivateRoute path='/listincomes' exact component={ListIncomes} />
           <PrivateRoute path='/listexpenses' exact component={ListExpenses} />
           <PrivateRoute path='/listsavings' exact component={ListSavings} />
           <PrivateRoute path='/reminders' exact component={Reminder} />
-          {!this.state.loading && this.state.user && (<PrivateRoute exact path='/incomes'
-
-            component={props => {
-              return (
-                <Incomes {...props} data={this.state.user} />
-              );
-            }}
-
-          />)}
-          {!this.state.loading && this.state.user && (<PrivateRoute exact path='/expenses'
-
-            component={props => {
-              return (
-                <Expenses {...props} data={this.state.user} />
-              );
-            }}
-
-          />)}
-          {!this.state.loading && this.state.user && (<PrivateRoute exact path='/dashboard'
-
-            component={props => {
-              return (
-                <Dashboard {...props} data={this.state.user} />
-              );
-            }}
-
-          />)}
+          {!this.state.loading && this.state.user && (
+            <PrivateRoute
+              exact
+              path='/incomes'
+              component={props => {
+                return <Incomes {...props} data={this.state.user} />
+              }}
+            />
+          )}
+          {!this.state.loading && this.state.user && (
+            <PrivateRoute
+              exact
+              path='/expenses'
+              component={props => {
+                return <Expenses {...props} data={this.state.user} />
+              }}
+            />
+          )}
+          {!this.state.loading && this.state.user && (
+            <PrivateRoute
+              exact
+              path='/dashboard'
+              component={props => {
+                return <Dashboard {...props} data={this.state.user} />
+              }}
+            />
+          )}
         </Switch>
         <Footer />
         <MenuApp />

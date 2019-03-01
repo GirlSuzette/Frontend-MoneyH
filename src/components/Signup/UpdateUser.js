@@ -14,10 +14,10 @@ class UpdateUser extends React.Component {
     fullName: '',
     email: '',
     password: '',
-    phoneNumber: '',
+    phoneNumber: ''
   }
 
-  componentDidMount() {
+  componentDidMount () {
     fetch('https://cryptic-retreat-15738.herokuapp.com/api/v1/users', {
       headers: {
         Authorization: `barear ${localStorage.getItem('token')}`
@@ -58,7 +58,6 @@ class UpdateUser extends React.Component {
 
     const API_URL = `https://cryptic-retreat-15738.herokuapp.com/api/v1/`
 
-
     fetch(`${API_URL}/users/${this.state.user._id}`, {
       method: 'PUT',
       headers: {
@@ -82,12 +81,11 @@ class UpdateUser extends React.Component {
         })
       })
       .catch(e => alert(e))
-
+    alert('Se ha actualizado exitosamente')
+    this.props.history.push('/')
   }
 
-
-  render() {
-
+  render () {
     return (
       <React.Fragment>
         <div className='thislogin'>

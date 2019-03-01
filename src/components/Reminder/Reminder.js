@@ -141,8 +141,8 @@ class Reminder extends Component {
         })
       })
       .catch(e => alert(e))
-    alert('You have successfully registered')
-    this.props.history.push('/reminders')
+    alert('Se ha registrado exitosamente')
+    this.props.history.push('/listexpenses')
   }
 
   render() {

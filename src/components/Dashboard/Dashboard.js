@@ -3,10 +3,10 @@ import './dashboard.css'
 import DashIncome from './DashIncome'
 import DashExpense from './DashExpense'
 import { Bar } from 'react-chartjs-2'
-import addCommas from '../../utils/addComas'
+import addComas from '../../utils/addComas'
 
 export default class Dashboard extends Component {
-  constructor() {
+  constructor () {
     super()
     this.state = {
       users: [],
@@ -16,17 +16,13 @@ export default class Dashboard extends Component {
       expenses: '',
       dataBalan: [],
       period: '',
-      expensesData: [],
-
+      expensesData: []
     }
   }
 
-
-
-  componentDidMount() {
+  componentDidMount () {
     this.getBalance()
     this.getExpenses()
-
   }
 
   getBalance = () => {
@@ -70,13 +66,11 @@ export default class Dashboard extends Component {
       .catch(e => alert(e))
   }
 
-
-
-  render() {
+  render () {
     const { incomes, expenses, balance, period } = this.state
     // console.log(this.state.expensesData)
     const data = {
-      labels: [`Ingresos ${period}`, `Gastos ${period}`, `Balance ${period}`,],
+      labels: [`Ingresos ${period}`, `Gastos ${period}`, `Balance ${period}`],
       datasets: [
         {
           label: '# Balance',
@@ -122,7 +116,6 @@ export default class Dashboard extends Component {
     }
 
     return (
-
       <React.Fragment>
         <div class='container marginDash'>
           <div class='row' />
@@ -132,20 +125,19 @@ export default class Dashboard extends Component {
               <div className='form-group'>
                 <div class='row'>
                   <div class='col-8 colorGreen'>Ingresos</div>
-                  <div class='col-8 colorGreen'>${addCommas(incomes)}</div>
+                  <div class='col-8 colorGreen'>${addComas(incomes)}</div>
                 </div>
               </div>
               <div className='form-group'>
                 <div class='row'>
                   <div class='col-8 colorRed'>Gastos</div>
-                  <div class='col-8 colorRed'>$ {addCommas(expenses)}</div>
+                  <div class='col-8 colorRed'>$ {addComas(expenses)}</div>
                 </div>
               </div>
-
               <div className='form-group'>
                 <div class='row'>
                   <div class='col-8 colorPur'>Balance</div>
-                  <div class='col-8 colorPur'>$ {addCommas(balance)}</div>
+                  <div class='col-8 colorPur'>$ {addComas(balance)}</div>
                 </div>
               </div>
             </div>

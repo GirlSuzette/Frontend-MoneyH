@@ -11,7 +11,6 @@ class Signup extends React.Component {
     }
   }
 
-
   onSubmit = e => {
     e.preventDefault()
 
@@ -50,10 +49,10 @@ class Signup extends React.Component {
         }
       })
       .catch(e => alert(e))
+    alert('Se ha registrado exitosamente')
     this.props.history.push('/login')
-
   }
-  render() {
+  render () {
     return (
       <React.Fragment>
         <div className='thislogin'>
@@ -71,7 +70,7 @@ class Signup extends React.Component {
                         type='text'
                         label='Nombre'
                         fullWidth
-                      // onChange={this.handleChange}
+                        // onChange={this.handleChange}
                       />
                     </div>
                     <div className='form-group'>
@@ -81,7 +80,7 @@ class Signup extends React.Component {
                         type='email'
                         label='Email'
                         fullWidth
-                      // onChange={this.handleChange}
+                        // onChange={this.handleChange}
                       />
                     </div>
                     <div className='form-group'>
@@ -96,7 +95,7 @@ class Signup extends React.Component {
                             .slice(0, 10)
                         }}
                         fullWidth
-                      // onChange={this.handleChange}
+                        // onChange={this.handleChange}
                       />
                     </div>
                     <div className='form-group'>
@@ -106,13 +105,15 @@ class Signup extends React.Component {
                         type='password'
                         label='Contraseña'
                         fullWidth
-                      // onChange={this.handleChange}
+                        // onChange={this.handleChange}
                       />
                     </div>
-                    {this.state.error.status && <p>{this.state.error.message}</p>}
+                    {this.state.error.status && (
+                      <p>{this.state.error.message}</p>
+                    )}
                     <div class='form-group'>
                       <Button type='submit' value='Login' variant='contained'>
-                      Registrarse
+                        Registrarse
                       </Button>
                     </div>
                   </form>

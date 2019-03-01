@@ -22,7 +22,7 @@
 .textHome {
   font-size: 15px;
   margin: 10px;
-  padding: 53px;
+  padding: 20px;
 }
 
 .HomeImg {
@@ -32,5 +32,9 @@
 @media screen and (min-width: 1024px) {
   .swiper-container.swiper-container-horizontal {
     height: 512px;
+  }
+
+  .textHome {
+    padding: 53px;
   }
 }
